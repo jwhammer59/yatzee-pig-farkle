@@ -1,3 +1,4 @@
+import { ThrowStmt } from '@angular/compiler';
 import { Component } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
@@ -17,6 +18,7 @@ export class FarkleComponent {
   currentRollTotal: number = 0;
   mustRollAgain: boolean = false;
   rollIsValid: boolean = false;
+  completeInitialRoll: boolean = false;
 
   multiDiceValue: number = 0;
   fourPlusPair: boolean = false;
@@ -26,6 +28,7 @@ export class FarkleComponent {
   hasFourOfaKind: boolean = false;
   hasFiveOfaKind: boolean = false;
   hasSixOfaKind: boolean = false;
+  hasAllOnesAndFives: boolean = false;
 
   player1Score: number = 0;
   player2Score: number = 0;
@@ -61,6 +64,7 @@ export class FarkleComponent {
 
   // Array to store values of rolled dice
   rolledDiceArray: number[] = [];
+  objRolledDiceArray: object[] = [];
 
   constructor(private snackBar: MatSnackBar) {}
 
@@ -96,6 +100,30 @@ export class FarkleComponent {
     }
     console.log(this.rolledDiceArray);
     // this.rolledDiceArray.sort();
+    this.completeInitialRoll = true;
+    this.checkforOnesAndFives();
+  }
+
+  checkforOnesAndFives() {
+    let tempScoreValue: number = 0;
+    let tempDiceCount: number = 0;
+    this.hasAllOnesAndFives = false;
+
+    this.rolledDiceArray.forEach((el) => {
+      if (el === 1 || el === 5) {
+        tempDiceCount += 1;
+        if (tempDiceCount === this.rolledDiceArray.length) {
+          this.rolledDiceArray.forEach((el) => {
+            if (el === 1) {
+              this.currentRollTotal += 100;
+            } else {
+              this.currentRollTotal += 50;
+            }
+            this.handleMustRoll('All dice are valid, you must roll again!');
+          });
+        }
+      }
+    });
     this.checkForOneToSixStriaght();
   }
 
@@ -127,7 +155,7 @@ export class FarkleComponent {
       this.rolledDiceArray[2] === this.rolledDiceArray[3] &&
       this.rolledDiceArray[4] === this.rolledDiceArray[5]
     ) {
-      this.currentRollTotal = 1500;
+      this.currentRollTotal += 1500;
       this.mustRollAgain = true;
       this.lockAllDice();
       this.autoDismissSnackBar('You scored three pair!', 'Wow!');
@@ -160,7 +188,7 @@ export class FarkleComponent {
         if (this.totalOnes === 3) {
           threeOfaKindCounter += 1;
           if (threeOfaKindCounter > 1) {
-            this.currentRollTotal = 2500;
+            this.currentRollTotal += 2500;
             this.handleMustRoll('You scored two 3 or a Kinds');
           } else {
             this.disableThreeOfaKind(1);
@@ -185,7 +213,7 @@ export class FarkleComponent {
         if (this.totalTwos === 3) {
           threeOfaKindCounter += 1;
           if (threeOfaKindCounter > 1) {
-            this.currentRollTotal = 2500;
+            this.currentRollTotal += 2500;
             this.handleMustRoll('You scored two 3 or a Kinds');
           } else {
             this.disableThreeOfaKind(2);
@@ -209,7 +237,7 @@ export class FarkleComponent {
         if (this.totalThrees === 3) {
           threeOfaKindCounter += 1;
           if (threeOfaKindCounter > 1) {
-            this.currentRollTotal = 2500;
+            this.currentRollTotal += 2500;
             this.handleMustRoll('You scored two 3 or a Kinds');
           } else {
             this.disableThreeOfaKind(3);
@@ -232,7 +260,7 @@ export class FarkleComponent {
         if (this.totalFours === 3) {
           threeOfaKindCounter += 1;
           if (threeOfaKindCounter > 1) {
-            this.currentRollTotal = 2500;
+            this.currentRollTotal += 2500;
             this.handleMustRoll('You scored two 3 or a Kinds');
           } else {
             this.disableThreeOfaKind(4);
@@ -256,7 +284,7 @@ export class FarkleComponent {
         if (this.totalFives === 3) {
           threeOfaKindCounter += 1;
           if (threeOfaKindCounter > 1) {
-            this.currentRollTotal = 2500;
+            this.currentRollTotal += 2500;
             this.handleMustRoll('You scored two 3 or a Kinds');
           } else {
             this.disableThreeOfaKind(5);
@@ -280,7 +308,7 @@ export class FarkleComponent {
         if (this.totalSixes === 3) {
           threeOfaKindCounter += 1;
           if (threeOfaKindCounter > 1) {
-            this.currentRollTotal = 2500;
+            this.currentRollTotal += 2500;
             this.handleMustRoll('You scored two 3 or a Kinds');
           } else {
             this.disableThreeOfaKind(6);
@@ -301,7 +329,7 @@ export class FarkleComponent {
         }
       }
     });
-    console.log('Finish check for 4 to 6 of a kind');
+    console.log('Finish check for 3 to 6 alike');
     console.log(this.currentRollTotal);
     if (this.hasFourOfaKind) {
       this.checkForFourOfaKindPlusPair(fourOfaKindValue);
@@ -334,16 +362,16 @@ export class FarkleComponent {
         tempDiceArray = this.rolledDiceArray.filter((el) => {
           return el !== diceNum;
         });
-      } else {
+      } else if (diceNum === 6) {
         tempDiceArray = this.rolledDiceArray.filter((el) => {
           return el !== diceNum;
         });
       }
     }
+    console.log(tempDiceArray);
     if (tempDiceArray[0] === tempDiceArray[1]) {
       this.currentRollTotal += 500;
-      this.mustRollAgain = true;
-      this.lockAllDice();
+      this.handleMustRoll('You rolled 4 of a kind + 1 pair!');
     }
   }
 
@@ -352,8 +380,10 @@ export class FarkleComponent {
     if (this.rolledDiceArray.includes(1) || this.rolledDiceArray.includes(5)) {
       this.rollIsValid = true;
     } else {
-      this.autoDismissSnackBar('No Valid Dice!', 'You Stink!!');
-      this.resetDice();
+      this.autoDismissSnackBar('No Valid Dice!', 'Farkle!!');
+      setTimeout(() => {
+        this.resetDice();
+      }, 2000);
     }
   }
 
@@ -363,16 +393,22 @@ export class FarkleComponent {
       if (el === val) {
         if (index === 0) {
           this.dice1Disabled = true;
+          this.dice1Locked = true;
         } else if (index === 1) {
           this.dice2Disabled = true;
+          this.dice2Locked = true;
         } else if (index === 2) {
           this.dice3Disabled = true;
+          this.dice3Locked = true;
         } else if (index === 3) {
           this.dice4Disabled = true;
+          this.dice4Locked = true;
         } else if (index === 4) {
           this.dice5Disabled = true;
+          this.dice5Locked = true;
         } else if (index === 5) {
           this.dice6Disabled = true;
+          this.dice6Locked = true;
         }
       }
     });
@@ -425,7 +461,10 @@ export class FarkleComponent {
 
   resetDice() {
     console.log('Resetting Dice');
-    this.currentRollTotal = 0;
+    if (!this.mustRollAgain) {
+      this.currentRollTotal = 0;
+    }
+    this.completeInitialRoll = false;
     this.mustRollAgain = false;
     this.dice1Disabled = false;
     this.dice2Disabled = false;
@@ -450,45 +489,69 @@ export class FarkleComponent {
   selectDice(val: number) {
     if (val === 1 && (this.dice1Value === 1 || this.dice1Value === 5)) {
       this.dice1Disabled = !this.dice1Disabled;
-      if (this.dice1Value === 1) {
+      if (this.dice1Value === 1 && this.dice1Disabled) {
         this.currentRollTotal += 100;
-      } else if (this.dice1Value === 5) {
+      } else if (this.dice1Value === 1 && !this.dice1Disabled) {
+        this.currentRollTotal -= 100;
+      } else if (this.dice1Value === 5 && this.dice1Disabled) {
         this.currentRollTotal += 50;
+      } else if (this.dice1Value === 5 && !this.dice1Disabled) {
+        this.currentRollTotal -= 50;
       }
     } else if (val === 2 && (this.dice2Value === 1 || this.dice2Value === 5)) {
       this.dice2Disabled = !this.dice2Disabled;
-      if (this.dice2Value === 1) {
+      if (this.dice2Value === 1 && this.dice2Disabled) {
         this.currentRollTotal += 100;
-      } else if (this.dice2Value === 5) {
+      } else if (this.dice2Value === 1 && !this.dice2Disabled) {
+        this.currentRollTotal -= 100;
+      } else if (this.dice2Value === 5 && this.dice2Disabled) {
         this.currentRollTotal += 50;
+      } else if (this.dice2Value === 5 && !this.dice2Disabled) {
+        this.currentRollTotal -= 50;
       }
     } else if (val === 3 && (this.dice3Value === 1 || this.dice3Value === 5)) {
       this.dice3Disabled = !this.dice3Disabled;
-      if (this.dice3Value === 1) {
+      if (this.dice3Value === 1 && this.dice3Disabled) {
         this.currentRollTotal += 100;
-      } else if (this.dice3Value === 5) {
+      } else if (this.dice3Value === 1 && !this.dice3Disabled) {
+        this.currentRollTotal -= 100;
+      } else if (this.dice3Value === 5 && this.dice3Disabled) {
         this.currentRollTotal += 50;
+      } else if (this.dice3Value === 5 && !this.dice3Disabled) {
+        this.currentRollTotal -= 50;
       }
     } else if (val === 4 && (this.dice4Value === 1 || this.dice4Value === 5)) {
       this.dice4Disabled = !this.dice4Disabled;
-      if (this.dice4Value === 1) {
+      if (this.dice4Value === 1 && this.dice4Disabled) {
         this.currentRollTotal += 100;
-      } else if (this.dice4Value === 5) {
+      } else if (this.dice4Value === 1 && !this.dice4Disabled) {
+        this.currentRollTotal -= 100;
+      } else if (this.dice4Value === 5 && this.dice4Disabled) {
         this.currentRollTotal += 50;
+      } else if (this.dice4Value === 5 && !this.dice4Disabled) {
+        this.currentRollTotal -= 50;
       }
     } else if (val === 5 && (this.dice5Value === 1 || this.dice5Value === 5)) {
       this.dice5Disabled = !this.dice5Disabled;
-      if (this.dice5Value === 1) {
+      if (this.dice5Value === 1 && this.dice5Disabled) {
         this.currentRollTotal += 100;
-      } else if (this.dice5Value === 5) {
+      } else if (this.dice5Value === 1 && !this.dice5Disabled) {
+        this.currentRollTotal -= 100;
+      } else if (this.dice5Value === 5 && this.dice5Disabled) {
         this.currentRollTotal += 50;
+      } else if (this.dice5Value === 5 && !this.dice5Disabled) {
+        this.currentRollTotal -= 50;
       }
     } else if (val === 6 && (this.dice6Value === 1 || this.dice6Value === 5)) {
       this.dice6Disabled = !this.dice6Disabled;
-      if (this.dice6Value === 1) {
+      if (this.dice6Value === 1 && this.dice6Disabled) {
         this.currentRollTotal += 100;
-      } else if (this.dice6Value === 5) {
+      } else if (this.dice6Value === 1 && !this.dice6Disabled) {
+        this.currentRollTotal -= 100;
+      } else if (this.dice6Value === 5 && this.dice6Disabled) {
         this.currentRollTotal += 50;
+      } else if (this.dice6Value === 5 && !this.dice6Disabled) {
+        this.currentRollTotal -= 50;
       }
     }
   }
