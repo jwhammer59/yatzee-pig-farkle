@@ -107,7 +107,7 @@
     <div fxFlex fxLayout="column" fxLayoutAlign="space-evenly center">
       <div class="middle-layout">
         <button
-          [disabled]="gameOver"
+          [disabled]="gameOver || !canRoll"
           mat-raised-button
           color="primary"
           (click)="rollDice()"
@@ -117,7 +117,7 @@
       </div>
       <div class="middle-layout">
         <button
-          [disabled]="gameOver || mustRollAgain"
+          [disabled]="gameOver || mustRollAgain || !completeInitialRoll"
           mat-raised-button
           color="accent"
           (click)="bankCurrentScore()"
