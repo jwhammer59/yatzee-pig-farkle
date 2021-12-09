@@ -1,0 +1,65 @@
+mat-card {
+  margin: 1rem 2rem;
+}
+
+mat-card-footer h1 {
+  color: #000000;
+  text-align: center;
+  margin-top: 1rem;
+}
+
+mat-icon {
+  margin-right: 5px;
+}
+
+img {
+  width: 75px;
+  height: 75px;
+}
+
+img:hover {
+  cursor: pointer;
+}
+
+table {
+  width: 100%;
+}
+
+#lower-layout {
+  height: 75vh;
+}
+
+.player-container {
+  position: relative;
+  top: 0;
+  background-color: #452b4c;
+}
+
+.main-bg {
+  background-color: #d3d3d3;
+}
+
+.player-layout {
+  min-height: 30%;
+}
+
+.middle-layout {
+  width: 100%;
+}
+
+h1 {
+  color: white;
+}
+
+.chosenDice {
+  opacity: 0.45;
+  cursor: none;
+}
+
+.currentPlayer {
+  color: yellow;
+}
+
+.secondaryPlayer {
+  color: #808080;
+}

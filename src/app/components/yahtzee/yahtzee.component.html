@@ -1,0 +1,229 @@
+<div>
+  <mat-card color="accent">
+    <mat-card-header>
+      <mat-card-title>Yahtzee Dice Game</mat-card-title>
+    </mat-card-header>
+    <div fxLayout fxLayoutAlign="space-evenly">
+      <div>
+        <mat-icon *ngIf="dice1Locked">lock</mat-icon>
+        <img
+          [ngClass]="{ chosenDice: dice1Disabled === true }"
+          src="assets/dice{{ dice1Value }}.png"
+          alt="dice 1"
+          (click)="selectDice(1)"
+        />
+      </div>
+      <div>
+        <mat-icon *ngIf="dice2Locked">lock</mat-icon>
+        <img
+          [ngClass]="{ chosenDice: dice2Disabled === true }"
+          src="assets/dice{{ dice2Value }}.png"
+          alt="dice 2"
+          (click)="selectDice(2)"
+        />
+      </div>
+      <div>
+        <mat-icon *ngIf="dice3Locked">lock</mat-icon>
+        <img
+          [ngClass]="{ chosenDice: dice3Disabled === true }"
+          src="assets/dice{{ dice3Value }}.png"
+          alt="dice 3"
+          (click)="selectDice(3)"
+        />
+      </div>
+      <div>
+        <mat-icon *ngIf="dice4Locked">lock</mat-icon>
+        <img
+          [ngClass]="{ chosenDice: dice4Disabled === true }"
+          src="assets/dice{{ dice4Value }}.png"
+          alt="dice 4"
+          (click)="selectDice(4)"
+        />
+      </div>
+      <div>
+        <mat-icon *ngIf="dice5Locked">lock</mat-icon>
+        <img
+          [ngClass]="{ chosenDice: dice5Disabled === true }"
+          src="assets/dice{{ dice5Value }}.png"
+          alt="dice 5"
+          (click)="selectDice(5)"
+        />
+      </div>
+    </div>
+    <mat-card-footer>
+      <h1>Winning Score: {{ winningScore }}</h1>
+    </mat-card-footer>
+  </mat-card>
+</div>
+<div id="lower-layout" fxLayout>
+  <div class="player-container" fxFlex="1 1 auto">
+    <div fxFlex fxLayout="column" fxLayoutAlign="center center">
+      <div class="player-layout">
+        <h1
+          [ngClass]="{
+            currentPlayer: activePlayer === 1,
+            secondaryPlayer: activePlayer !== 1
+          }"
+          class="mat-display-2"
+        >
+          <mat-icon color="accent" *ngIf="this.activePlayer === 1"
+            >fiber_manual_record</mat-icon
+          >Player 1
+        </h1>
+      </div>
+      <div class="player-layout">
+        <div fxLayout="column" fxLayoutAlign="center center">
+          <div>
+            <h1>Current Roll Total</h1>
+          </div>
+          <div>
+            <h1 *ngIf="activePlayer === 1">{{ currentScore }}</h1>
+            <h1 *ngIf="activePlayer === 2">0</h1>
+          </div>
+        </div>
+      </div>
+      <div class="player-layout">
+        <div fxLayout="column" fxLayoutAlign="center center">
+          <div>
+            <h1>Game Score</h1>
+          </div>
+          <div>
+            <h1>{{ player1Score }}</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div fxFlex="5 1 auto">
+    <div fxLayout fxLayoutAlign="space-around">
+      <div class="middle-layout">
+        <div fxLayout fxLayoutGap="20px">
+          <div class="middle-layout">
+            <table
+              mat-table
+              [dataSource]="upperDataSource"
+              class="mat-elevation-z8"
+            >
+              <ng-container matColumnDef="rowName">
+                <th mat-header-cell *matHeaderCellDef>Lower Section</th>
+                <td mat-cell *matCellDef="let element">
+                  {{ element.rowName }}
+                </td>
+              </ng-container>
+              <ng-container matColumnDef="rowPlay">
+                <th mat-header-cell *matHeaderCellDef>How to Play</th>
+                <td mat-cell *matCellDef="let element">
+                  {{ element.rowPlay }}
+                </td>
+              </ng-container>
+              <ng-container matColumnDef="rowPlayer1">
+                <th mat-header-cell *matHeaderCellDef>Player 1</th>
+                <td mat-cell *matCellDef="let element">
+                  {{ element.rowPlayer1 }}
+                </td>
+              </ng-container>
+              <ng-container matColumnDef="rowPlayer2">
+                <th mat-header-cell *matHeaderCellDef>Player 2</th>
+                <td mat-cell *matCellDef="let element">
+                  {{ element.rowPlayer2 }}
+                </td>
+              </ng-container>
+              <ng-container matColumnDef="buttons">
+                <th mat-header-cell *matHeaderCellDef>#</th>
+                <td mat-cell *matCellDef="let element">
+                  <button mat-stroked-button color="primary">
+                    <mat-icon>add</mat-icon>
+                  </button>
+                </td>
+              </ng-container>
+
+              <tr mat-header-row *matHeaderRowDef="lowerColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: lowerColumns"></tr>
+            </table>
+          </div>
+          <div class="middle-layout">
+            <table
+              mat-table
+              [dataSource]="lowerDataSource"
+              class="mat-elevation-z8"
+            >
+              <ng-container matColumnDef="rowName">
+                <th mat-header-cell *matHeaderCellDef>Lower Section</th>
+                <td mat-cell *matCellDef="let element">
+                  {{ element.rowName }}
+                </td>
+              </ng-container>
+              <ng-container matColumnDef="rowPlay">
+                <th mat-header-cell *matHeaderCellDef>How to Play</th>
+                <td mat-cell *matCellDef="let element">
+                  {{ element.rowPlay }}
+                </td>
+              </ng-container>
+              <ng-container matColumnDef="rowPlayer1">
+                <th mat-header-cell *matHeaderCellDef>Player 1</th>
+                <td mat-cell *matCellDef="let element">
+                  {{ element.rowPlayer1 }}
+                </td>
+              </ng-container>
+              <ng-container matColumnDef="rowPlayer2">
+                <th mat-header-cell *matHeaderCellDef>Player 2</th>
+                <td mat-cell *matCellDef="let element">
+                  {{ element.rowPlayer2 }}
+                </td>
+              </ng-container>
+              <ng-container matColumnDef="buttons">
+                <th mat-header-cell *matHeaderCellDef>#</th>
+                <td mat-cell *matCellDef="let element">
+                  <button mat-stroked-button color="primary">
+                    <mat-icon>add</mat-icon>
+                  </button>
+                </td>
+              </ng-container>
+
+              <tr mat-header-row *matHeaderRowDef="lowerColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: lowerColumns"></tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="player-container" fxFlex="1 1 auto">
+    <div fxFlex fxLayout="column" fxLayoutAlign="center center">
+      <div class="player-layout">
+        <h1
+          [ngClass]="{
+            currentPlayer: activePlayer === 2,
+            secondaryPlayer: activePlayer !== 2
+          }"
+          class="mat-display-2"
+        >
+          <mat-icon color="accent" *ngIf="this.activePlayer === 2"
+            >fiber_manual_record</mat-icon
+          >Player 2
+        </h1>
+      </div>
+      <div class="player-layout">
+        <div fxLayout="column" fxLayoutAlign="center center">
+          <div>
+            <h1>Current Roll Total</h1>
+          </div>
+          <div>
+            <h1 *ngIf="activePlayer === 2">{{ currentScore }}</h1>
+            <h1 *ngIf="activePlayer === 1">0</h1>
+          </div>
+        </div>
+      </div>
+      <div class="player-layout">
+        <div fxLayout="column" fxLayoutAlign="center center">
+          <div>
+            <h1>Game Score</h1>
+          </div>
+          <div>
+            <h1>{{ player2Score }}</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

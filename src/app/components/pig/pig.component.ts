@@ -1,4 +1,3 @@
-import { ThrowStmt } from '@angular/compiler';
 import { Component } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
@@ -13,12 +12,6 @@ interface Dice {
   styleUrls: ['./pig.component.scss'],
 })
 export class PigComponent {
-  // Possible Values for Dice Face
-  diceValueArray: number[] = [1, 2, 3, 4, 5, 6];
-  // Properties I may not need
-  rollNumber: number = 0;
-
-  // Active Properties
   activePlayer: number = 1;
   winningScore: number = 2500;
   gameOver: boolean = false;
@@ -135,16 +128,12 @@ export class PigComponent {
     } else {
       this.dice5Locked = true;
     }
-    console.log(this.rolledDiceArray);
     this.completeInitialRoll = true;
     this.canRoll = false;
     this.checkForOneAndFiveOnly();
-    console.log(this.rolledDiceArray);
-    console.log(this.diceArray);
   }
 
   checkForOneAndFiveOnly() {
-    console.log('Starting check for 1 and 5 only');
     let tempDiceCount: number = 0;
 
     this.rolledDiceArray.forEach((el) => {
@@ -163,7 +152,6 @@ export class PigComponent {
         }
       }
     });
-    console.log('Finished checking for 1 and 5 only');
     this.checkForOneToFive();
   }
 
@@ -190,7 +178,6 @@ export class PigComponent {
   }
 
   checkForThreeOfaKind() {
-    console.log('Starting 3 of a Kind Check');
     this.threeOfaKindValue = 0;
     this.fourOfaKindValue = 0;
     this.hasThreeOfaKind = false;
@@ -265,82 +252,11 @@ export class PigComponent {
       this.autoDismissSnackBar('You rolled 4 of a kind!', 'Keep Going?');
       this.checkForMustRoll(this.fourOfaKindValue);
     } else {
-      console.log('No 3 or 4 of a Kind, check for valid dice');
       this.checkForValidDice();
     }
   }
 
-  // scoreMustRoll(val: number) {
-  //   console.log('Start calculating score and store');
-  //   let tempValues = this.rolledDiceArray.reduce((a, b) => {
-  //     return a + b;
-  //   });
-  //   if (val === 1 && tempValues === 5) {
-  //     this.currentRollTotal += 1200;
-  //     this.mustRollAgain = true;
-  //   } else if (val === 1 && tempValues === 9) {
-  //     this.currentRollTotal += 1150;
-  //     this.mustRollAgain = true;
-  //   } else if (val === 1 && tempValues === 13) {
-  //     this.currentRollTotal += 1100;
-  //     this.mustRollAgain = true;
-  //   } else if (val === 2 && tempValues === 8) {
-  //     this.currentRollTotal += 400;
-  //     this.mustRollAgain = true;
-  //   } else if (val === 2 && tempValues === 9) {
-  //     this.currentRollTotal += 350;
-  //     this.mustRollAgain = true;
-  //   } else if (val === 2 && tempValues === 16) {
-  //     this.currentRollTotal += 300;
-  //     this.mustRollAgain = true;
-  //   } else if (val === 3 && tempValues === 11) {
-  //     this.currentRollTotal += 500;
-  //     this.mustRollAgain = true;
-  //   } else if (val === 3 && tempValues === 15) {
-  //     this.currentRollTotal += 450;
-  //     this.mustRollAgain = true;
-  //   } else if (val === 3 && tempValues === 19) {
-  //     this.currentRollTotal += 400;
-  //     this.mustRollAgain = true;
-  //   } else if (val === 4 && tempValues === 14) {
-  //     this.currentRollTotal += 600;
-  //     this.mustRollAgain = true;
-  //   } else if (val === 4 && tempValues === 18) {
-  //     this.currentRollTotal += 550;
-  //     this.mustRollAgain = true;
-  //   } else if (val === 4 && tempValues === 22) {
-  //     this.currentRollTotal += 500;
-  //     this.mustRollAgain = true;
-  //   } else if (val === 5 && tempValues === 17) {
-  //     this.currentRollTotal += 700;
-  //     this.mustRollAgain = true;
-  //   } else if (val === 5 && tempValues === 21) {
-  //     this.currentRollTotal += 650;
-  //     this.mustRollAgain = true;
-  //   } else if (val === 5 && tempValues === 25) {
-  //     this.currentRollTotal += 600;
-  //     this.mustRollAgain = true;
-  //   } else if (val === 6 && tempValues === 20) {
-  //     this.currentRollTotal += 800;
-  //     this.mustRollAgain = true;
-  //   } else if (val === 6 && tempValues === 24) {
-  //     this.currentRollTotal += 750;
-  //     this.mustRollAgain = true;
-  //   } else if (val === 6 && tempValues === 28) {
-  //     this.currentRollTotal += 700;
-  //     this.mustRollAgain = true;
-  //   }
-
-  //   console.log(`3 of a Kind plus 1's & 5's: ${this.currentRollTotal}`);
-  //   // Calculate Score?
-  // }
-
-  scoreThreeOfaKind() {
-    console.log('Score 3 of a kind');
-  }
-
   checkForValidDice() {
-    console.log('Start checking for Valid Dice');
     if (this.rolledDiceArray.includes(1) || this.rolledDiceArray.includes(5)) {
       this.rollIsValid = true;
     } else {
@@ -353,7 +269,6 @@ export class PigComponent {
   }
 
   handleThreeOfaKind(num: number) {
-    console.log(num);
     if (num === 1) {
       this.currentRollTotal += 1000;
     } else if (num === 2) {
@@ -445,7 +360,6 @@ export class PigComponent {
   }
 
   selectDice(val: number) {
-    console.log(val);
     if (
       val === 1 &&
       (this.dice1Value === 1 || this.dice1Value === 5) &&
@@ -555,7 +469,6 @@ export class PigComponent {
   }
 
   bankCurrentScore() {
-    console.log(this.currentRollTotal);
     if (this.activePlayer === 1) {
       if (this.player1Score < 300 && this.currentRollTotal < 300) {
         this.autoDismissSnackBar(
@@ -598,7 +511,6 @@ export class PigComponent {
   }
 
   lockAllDice() {
-    console.log('Lock all dice');
     this.dice1Disabled = true;
     this.dice2Disabled = true;
     this.dice3Disabled = true;
@@ -612,7 +524,6 @@ export class PigComponent {
   }
 
   resetDice() {
-    console.log('Resetting Dice');
     if (!this.mustRollAgain) {
       this.currentRollTotal = 0;
     }
@@ -637,7 +548,6 @@ export class PigComponent {
   }
 
   newGame() {
-    console.log('New Game');
     this.gameOver = false;
     this.activePlayer = 1;
     this.currentRollTotal = 0;

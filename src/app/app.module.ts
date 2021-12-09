@@ -13,6 +13,7 @@ import { HomeComponent } from './components/home/home.component';
 import { NavComponent } from './components/nav/nav.component';
 import { PigComponent } from './components/pig/pig.component';
 import { FarkleComponent } from './components/farkle/farkle.component';
+import { YahtzeeComponent } from './components/yahtzee/yahtzee.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { FarkleComponent } from './components/farkle/farkle.component';
     NavComponent,
     PigComponent,
     FarkleComponent,
+    YahtzeeComponent,
   ],
   imports: [
     BrowserModule,
