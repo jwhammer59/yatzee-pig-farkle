@@ -98,9 +98,9 @@
     <div fxFlex fxLayout="column" fxLayoutAlign="space-evenly center">
       <div class="middle-layout">
         <button
-          [disabled]="gameOver"
+          [disabled]="gameOver || !canRoll"
           mat-raised-button
-          color="accent"
+          color="primary"
           (click)="rollDice()"
         >
           <mat-icon>autorenew</mat-icon>Roll Dice
@@ -108,16 +108,16 @@
       </div>
       <div class="middle-layout">
         <button
-          [disabled]="gameOver || mustRollAgain"
+          [disabled]="gameOver || mustRollAgain || !completeInitialRoll"
           mat-raised-button
-          id="bank-button"
+          color="accent"
           (click)="bankCurrentScore()"
         >
           <mat-icon>attach_money</mat-icon>Bank
         </button>
       </div>
       <div class="middle-layout">
-        <button mat-raised-button color="primary" (click)="newGame()">
+        <button mat-raised-button color="warn" (click)="newGame()">
           <mat-icon>add_circle_outline</mat-icon>New Game
         </button>
       </div>

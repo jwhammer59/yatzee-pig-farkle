@@ -12,8 +12,9 @@ interface Dice {
   styleUrls: ['./farkle.component.scss'],
 })
 export class FarkleComponent {
+  // rollNumber: number = 0;
+
   activePlayer: number = 1;
-  rollNumber: number = 0;
   winningScore: number = 10000;
   gameOver: boolean = false;
   currentRollTotal: number = 0;
@@ -22,8 +23,8 @@ export class FarkleComponent {
   completeInitialRoll: boolean = false;
   canRoll: boolean = true;
 
-  multiDiceValue: number = 0;
-  fourPlusPair: boolean = false;
+  // multiDiceValue: number = 0;
+  // fourPlusPair: boolean = false;
 
   threeOfaKindCounter: number = 0;
   threeOfaKindValue: number = 0;
@@ -31,9 +32,9 @@ export class FarkleComponent {
 
   hasThreeOfaKind: boolean = false;
   hasFourOfaKind: boolean = false;
-  hasFiveOfaKind: boolean = false;
-  hasSixOfaKind: boolean = false;
-  hasAllOnesAndFives: boolean = false;
+  // hasFiveOfaKind: boolean = false;
+  // hasSixOfaKind: boolean = false;
+  // hasAllOnesAndFives: boolean = false;
   hasTwoThreeOfaKinds: boolean = false;
 
   player1Score: number = 0;
@@ -79,7 +80,6 @@ export class FarkleComponent {
 
   // Array to store values of rolled dice
   rolledDiceArray: number[] = [];
-  objRolledDiceArray: object[] = [];
 
   constructor(private snackBar: MatSnackBar) {}
 
@@ -92,7 +92,6 @@ export class FarkleComponent {
     if (this.dice1Disabled === false) {
       this.dice1Value = Math.floor(Math.random() * 6 + 1);
       this.rolledDiceArray.push(this.dice1Value);
-      // this.rolledDiceArray.splice(0, 0, this.dice1Value);
       this.diceArray.splice(0, 0, {
         diceNumber: 1,
         diceValue: this.dice1Value,
@@ -158,9 +157,8 @@ export class FarkleComponent {
   }
 
   checkforOnesAndFives() {
-    let tempScoreValue: number = 0;
     let tempDiceCount: number = 0;
-    this.hasAllOnesAndFives = false;
+    // this.hasAllOnesAndFives = false;
 
     this.rolledDiceArray.forEach((el) => {
       if (el === 1 || el === 5) {
@@ -223,8 +221,8 @@ export class FarkleComponent {
     this.fourOfaKindValue = 0;
     this.hasThreeOfaKind = false;
     this.hasFourOfaKind = false;
-    this.hasFiveOfaKind = false;
-    this.hasSixOfaKind = false;
+    // this.hasFiveOfaKind = false;
+    // this.hasSixOfaKind = false;
     this.hasTwoThreeOfaKinds = false;
     this.totalOnes = 0;
     this.totalTwos = 0;
@@ -238,12 +236,7 @@ export class FarkleComponent {
         if (this.totalOnes === 3) {
           this.threeOfaKindCounter += 1;
           if (this.threeOfaKindCounter > 1) {
-            // this.handleTwoThreeOfaKinds();
-            this.hasTwoThreeOfaKinds = true;
-            this.adjustForTwoThreeOfaKinds(this.threeOfaKindValue);
-            this.currentRollTotal += 2500;
-            this.handleMustRoll('You scored two 3 or a Kinds');
-            this.canRoll = true;
+            this.handleTwoThreeOfaKinds();
           } else {
             this.handleThreeOfaKind(diceNum);
           }
@@ -259,11 +252,7 @@ export class FarkleComponent {
         if (this.totalTwos === 3) {
           this.threeOfaKindCounter += 1;
           if (this.threeOfaKindCounter > 1) {
-            this.hasTwoThreeOfaKinds = true;
-            this.adjustForTwoThreeOfaKinds(this.threeOfaKindValue);
-            this.currentRollTotal += 2500;
-            this.handleMustRoll('You scored two 3 or a Kinds');
-            this.canRoll = true;
+            this.handleTwoThreeOfaKinds();
           } else {
             this.handleThreeOfaKind(diceNum);
           }
@@ -279,11 +268,7 @@ export class FarkleComponent {
         if (this.totalThrees === 3) {
           this.threeOfaKindCounter += 1;
           if (this.threeOfaKindCounter > 1) {
-            this.hasTwoThreeOfaKinds = true;
-            this.adjustForTwoThreeOfaKinds(this.threeOfaKindValue);
-            this.currentRollTotal += 2500;
-            this.handleMustRoll('You scored two 3 or a Kinds');
-            this.canRoll = true;
+            this.handleTwoThreeOfaKinds();
           } else {
             this.handleThreeOfaKind(diceNum);
           }
@@ -299,11 +284,7 @@ export class FarkleComponent {
         if (this.totalFours === 3) {
           this.threeOfaKindCounter += 1;
           if (this.threeOfaKindCounter > 1) {
-            this.hasTwoThreeOfaKinds = true;
-            this.adjustForTwoThreeOfaKinds(this.threeOfaKindValue);
-            this.currentRollTotal += 2500;
-            this.handleMustRoll('You scored two 3 or a Kinds');
-            this.canRoll = true;
+            this.handleTwoThreeOfaKinds();
           } else {
             this.handleThreeOfaKind(diceNum);
           }
@@ -319,11 +300,7 @@ export class FarkleComponent {
         if (this.totalFives === 3) {
           this.threeOfaKindCounter += 1;
           if (this.threeOfaKindCounter > 1) {
-            this.hasTwoThreeOfaKinds = true;
-            this.adjustForTwoThreeOfaKinds(this.threeOfaKindValue);
-            this.currentRollTotal += 2500;
-            this.handleMustRoll('You scored two 3 or a Kinds');
-            this.canRoll = true;
+            this.handleTwoThreeOfaKinds();
           } else {
             this.handleThreeOfaKind(diceNum);
           }
@@ -339,11 +316,7 @@ export class FarkleComponent {
         if (this.totalSixes === 3) {
           this.threeOfaKindCounter += 1;
           if (this.threeOfaKindCounter > 1) {
-            this.hasTwoThreeOfaKinds = true;
-            this.adjustForTwoThreeOfaKinds(this.threeOfaKindValue);
-            this.currentRollTotal += 2500;
-            this.handleMustRoll('You scored two 3 or a Kinds');
-            this.canRoll = true;
+            this.handleTwoThreeOfaKinds();
           } else {
             this.handleThreeOfaKind(diceNum);
           }
