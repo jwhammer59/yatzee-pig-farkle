@@ -14,6 +14,7 @@ import { NavComponent } from './components/nav/nav.component';
 import { PigComponent } from './components/pig/pig.component';
 import { FarkleComponent } from './components/farkle/farkle.component';
 import { YahtzeeComponent } from './components/yahtzee/yahtzee.component';
+import { Table1Component } from './components/table1/table1.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { YahtzeeComponent } from './components/yahtzee/yahtzee.component';
     PigComponent,
     FarkleComponent,
     YahtzeeComponent,
+    Table1Component,
   ],
   imports: [
     BrowserModule,
