@@ -16,9 +16,7 @@ interface TableElements {
   styleUrls: ['./yahtzee.component.scss'],
 })
 export class YahtzeeComponent {
-  @ViewChild(MatTable, { static: true })
-  table!: MatTable<any>;
-
+  @(ViewChild('table')!) table!: MatTable<any>;
   activePlayer: number = 1;
   winningScore: number = 0;
 
@@ -330,18 +328,16 @@ export class YahtzeeComponent {
     }
   }
 
-  scoreDice(el: string) {
+  scoreDice(el: number) {
     console.log(el);
     if (this.activePlayer === 1) {
-      if (el === 'one' && !this.player1_hasAces) {
+      if (el === 1 && !this.player1_hasAces) {
         this.rolledDiceArray.forEach((el) => {
           if (el === 1) {
             this.player1_Aces += 1;
           }
         });
         console.log(this.player1_Aces);
-        this.table.renderRows();
-        console.log(this.table);
       }
     }
   }
