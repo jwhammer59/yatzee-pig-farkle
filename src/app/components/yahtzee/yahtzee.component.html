@@ -46,7 +46,9 @@
       </div>
     </div>
     <mat-card-footer>
-      <h1>Winning Score: {{ gameResults }}</h1>
+      <div id="result-layout" [hidden]="!gameOver">
+        <h2>{{ gameResults }}</h2>
+      </div>
     </mat-card-footer>
   </mat-card>
 </div>
@@ -60,15 +62,35 @@
               <tr class="mat-header-row">
                 <th class="mat-header-cell">Upper Section</th>
                 <th class="mat-header-cell">How to Play</th>
-                <th class="mat-header-cell">Player 1</th>
-                <th class="mat-header-cell">Player 2</th>
+                <th
+                  class="mat-header-cell"
+                  [ngClass]="{ currentPlayer: activePlayer === 1 }"
+                >
+                  Player 1
+                </th>
+                <th
+                  class="mat-header-cell"
+                  [ngClass]="{ currentPlayer: activePlayer === 2 }"
+                >
+                  Player 2
+                </th>
                 <th class="mat-header-cell cell-layout">Add Score</th>
               </tr>
               <tr class="mat-row">
                 <td class="mat-cell">Aces</td>
                 <td class="mat-cell">Score all Aces</td>
-                <td class="mat-cell cell-layout">{{ p1_Aces }}</td>
-                <td class="mat-cell cell-layout">{{ p2_Aces }}</td>
+                <td
+                  class="mat-cell cell-layout"
+                  [ngClass]="{ roundScored: p1_AcesBtnDisabled === true }"
+                >
+                  {{ p1_Aces }}
+                </td>
+                <td
+                  class="mat-cell cell-layout"
+                  [ngClass]="{ roundScored: p2_AcesBtnDisabled === true }"
+                >
+                  {{ p2_Aces }}
+                </td>
                 <td class="mat-cell cell-layout">
                   <button
                     [disabled]="currentAcesBtn"
@@ -83,8 +105,18 @@
               <tr class="mat-row">
                 <td class="mat-cell">Twos</td>
                 <td class="mat-cell">Score all Twos</td>
-                <td class="mat-cell cell-layout">{{ p1_Twos }}</td>
-                <td class="mat-cell cell-layout">{{ p2_Twos }}</td>
+                <td
+                  class="mat-cell cell-layout"
+                  [ngClass]="{ roundScored: p1_TwosBtnDisabled === true }"
+                >
+                  {{ p1_Twos }}
+                </td>
+                <td
+                  class="mat-cell cell-layout"
+                  [ngClass]="{ roundScored: p2_TwosBtnDisabled === true }"
+                >
+                  {{ p2_Twos }}
+                </td>
                 <td class="mat-cell cell-layout">
                   <button
                     [disabled]="currentTwosBtn"
@@ -99,8 +131,18 @@
               <tr class="mat-row">
                 <td class="mat-cell">Threes</td>
                 <td class="mat-cell">Score all Threes</td>
-                <td class="mat-cell cell-layout">{{ p1_Threes }}</td>
-                <td class="mat-cell cell-layout">{{ p2_Threes }}</td>
+                <td
+                  class="mat-cell cell-layout"
+                  [ngClass]="{ roundScored: p1_ThreesBtnDisabled === true }"
+                >
+                  {{ p1_Threes }}
+                </td>
+                <td
+                  class="mat-cell cell-layout"
+                  [ngClass]="{ roundScored: p2_ThreesBtnDisabled === true }"
+                >
+                  {{ p2_Threes }}
+                </td>
                 <td class="mat-cell cell-layout">
                   <button
                     [disabled]="currentThreesBtn"
@@ -115,8 +157,18 @@
               <tr class="mat-row">
                 <td class="mat-cell">Fours</td>
                 <td class="mat-cell">Score all Fours</td>
-                <td class="mat-cell cell-layout">{{ p1_Fours }}</td>
-                <td class="mat-cell cell-layout">{{ p2_Fours }}</td>
+                <td
+                  class="mat-cell cell-layout"
+                  [ngClass]="{ roundScored: p1_FoursBtnDisabled === true }"
+                >
+                  {{ p1_Fours }}
+                </td>
+                <td
+                  class="mat-cell cell-layout"
+                  [ngClass]="{ roundScored: p2_FoursBtnDisabled === true }"
+                >
+                  {{ p2_Fours }}
+                </td>
                 <td class="mat-cell cell-layout">
                   <button
                     [disabled]="currentFoursBtn"
@@ -131,8 +183,18 @@
               <tr class="mat-row">
                 <td class="mat-cell">Fives</td>
                 <td class="mat-cell">Score all Fives</td>
-                <td class="mat-cell cell-layout">{{ p1_Fives }}</td>
-                <td class="mat-cell cell-layout">{{ p2_Fives }}</td>
+                <td
+                  class="mat-cell cell-layout"
+                  [ngClass]="{ roundScored: p1_FivesBtnDisabled === true }"
+                >
+                  {{ p1_Fives }}
+                </td>
+                <td
+                  class="mat-cell cell-layout"
+                  [ngClass]="{ roundScored: p2_FivesBtnDisabled === true }"
+                >
+                  {{ p2_Fives }}
+                </td>
                 <td class="mat-cell cell-layout">
                   <button
                     [disabled]="currentFivesBtn"
@@ -147,8 +209,18 @@
               <tr class="mat-row">
                 <td class="mat-cell">Sixes</td>
                 <td class="mat-cell">Score all Sixes</td>
-                <td class="mat-cell cell-layout">{{ p1_Sixes }}</td>
-                <td class="mat-cell cell-layout">{{ p2_Sixes }}</td>
+                <td
+                  class="mat-cell cell-layout"
+                  [ngClass]="{ roundScored: p1_SixesBtnDisabled === true }"
+                >
+                  {{ p1_Sixes }}
+                </td>
+                <td
+                  class="mat-cell cell-layout"
+                  [ngClass]="{ roundScored: p2_SixesBtnDisabled === true }"
+                >
+                  {{ p2_Sixes }}
+                </td>
                 <td class="mat-cell cell-layout button-container">
                   <button
                     [disabled]="currentSixesBtn"
@@ -160,6 +232,7 @@
                   </button>
                 </td>
               </tr>
+              <tr class="divider"></tr>
               <tr class="mat-row total-layout">
                 <td class="mat-cell">Total</td>
                 <td class="mat-cell">==></td>
@@ -208,6 +281,7 @@
                   Roll
                 </button>
               </div>
+              <div class="spacer"></div>
               <div class="button-layout">
                 <button mat-raised-button color="warn" (click)="newGame()">
                   <mat-icon>add_circle_outline</mat-icon>
@@ -221,15 +295,35 @@
               <tr class="mat-header-row">
                 <th class="mat-header-cell">Upper Section</th>
                 <th class="mat-header-cell">How to Play</th>
-                <th class="mat-header-cell">Player 1</th>
-                <th class="mat-header-cell">Player 2</th>
+                <th
+                  class="mat-header-cell"
+                  [ngClass]="{ currentPlayer: activePlayer === 1 }"
+                >
+                  Player 1
+                </th>
+                <th
+                  class="mat-header-cell"
+                  [ngClass]="{ currentPlayer: activePlayer === 2 }"
+                >
+                  Player 2
+                </th>
                 <th class="mat-header-cell cell-layout">Add Score</th>
               </tr>
               <tr class="mat-row">
                 <td class="mat-cell">3 of a Kind</td>
                 <td class="mat-cell">Score all Dice</td>
-                <td class="mat-cell cell-layout">{{ p1_ThreeOfaKind }}</td>
-                <td class="mat-cell cell-layout">{{ p2_ThreeOfaKind }}</td>
+                <td
+                  class="mat-cell cell-layout"
+                  [ngClass]="{ roundScored: p1_ThreeKindBtnDisabled === true }"
+                >
+                  {{ p1_ThreeOfaKind }}
+                </td>
+                <td
+                  class="mat-cell cell-layout"
+                  [ngClass]="{ roundScored: p2_ThreeKindBtnDisabled === true }"
+                >
+                  {{ p2_ThreeOfaKind }}
+                </td>
                 <td class="mat-cell cell-layout">
                   <button
                     [disabled]="currentThreeKindBtn"
@@ -244,8 +338,18 @@
               <tr class="mat-row">
                 <td class="mat-cell">4 of a Kind</td>
                 <td class="mat-cell">Score all Dice</td>
-                <td class="mat-cell cell-layout">{{ p1_FourOfaKind }}</td>
-                <td class="mat-cell cell-layout">{{ p2_FourOfaKind }}</td>
+                <td
+                  class="mat-cell cell-layout"
+                  [ngClass]="{ roundScored: p1_FourKindBtnDisabled === true }"
+                >
+                  {{ p1_FourOfaKind }}
+                </td>
+                <td
+                  class="mat-cell cell-layout"
+                  [ngClass]="{ roundScored: p2_FourKindBtnDisabled === true }"
+                >
+                  {{ p2_FourOfaKind }}
+                </td>
                 <td class="mat-cell cell-layout">
                   <button
                     [disabled]="currentFourKindBtn"
@@ -260,8 +364,18 @@
               <tr class="mat-row">
                 <td class="mat-cell">Full House</td>
                 <td class="mat-cell">Score 25</td>
-                <td class="mat-cell cell-layout">{{ p1_FullHouse }}</td>
-                <td class="mat-cell cell-layout">{{ p2_FullHouse }}</td>
+                <td
+                  class="mat-cell cell-layout"
+                  [ngClass]="{ roundScored: p1_FullHouseBtnDisabled === true }"
+                >
+                  {{ p1_FullHouse }}
+                </td>
+                <td
+                  class="mat-cell cell-layout"
+                  [ngClass]="{ roundScored: p2_FullHouseBtnDisabled === true }"
+                >
+                  {{ p2_FullHouse }}
+                </td>
                 <td class="mat-cell cell-layout">
                   <button
                     [disabled]="currentFullHouseBtn"
@@ -276,8 +390,18 @@
               <tr class="mat-row">
                 <td class="mat-cell">Sm Straight</td>
                 <td class="mat-cell">Score 30</td>
-                <td class="mat-cell cell-layout">{{ p1_SmStraight }}</td>
-                <td class="mat-cell cell-layout">{{ p2_SmStraight }}</td>
+                <td
+                  class="mat-cell cell-layout"
+                  [ngClass]="{ roundScored: p1_SmStraightBtnDisabled === true }"
+                >
+                  {{ p1_SmStraight }}
+                </td>
+                <td
+                  class="mat-cell cell-layout"
+                  [ngClass]="{ roundScored: p2_SmStraightBtnDisabled === true }"
+                >
+                  {{ p2_SmStraight }}
+                </td>
                 <td class="mat-cell cell-layout">
                   <button
                     [disabled]="currentSmStraightBtn"
@@ -292,8 +416,18 @@
               <tr class="mat-row">
                 <td class="mat-cell">Lg Straight</td>
                 <td class="mat-cell">Score 40</td>
-                <td class="mat-cell cell-layout">{{ p1_LgStraight }}</td>
-                <td class="mat-cell cell-layout">{{ p2_LgStraight }}</td>
+                <td
+                  class="mat-cell cell-layout"
+                  [ngClass]="{ roundScored: p1_LgStraightBtnDisabled === true }"
+                >
+                  {{ p1_LgStraight }}
+                </td>
+                <td
+                  class="mat-cell cell-layout"
+                  [ngClass]="{ roundScored: p2_LgStraightBtnDisabled === true }"
+                >
+                  {{ p2_LgStraight }}
+                </td>
                 <td class="mat-cell cell-layout">
                   <button
                     [disabled]="currentLgStraightBtn"
@@ -308,8 +442,18 @@
               <tr class="mat-row">
                 <td class="mat-cell">Yahztee</td>
                 <td class="mat-cell">Score 50</td>
-                <td class="mat-cell cell-layout">{{ p1_Yahtzee }}</td>
-                <td class="mat-cell cell-layout">{{ p2_Yahtzee }}</td>
+                <td
+                  class="mat-cell cell-layout"
+                  [ngClass]="{ roundScored: p1_YahtzeeBtnDisabled === true }"
+                >
+                  {{ p1_Yahtzee }}
+                </td>
+                <td
+                  class="mat-cell cell-layout"
+                  [ngClass]="{ roundScored: p2_YahtzeeBtnDisabled === true }"
+                >
+                  {{ p2_Yahtzee }}
+                </td>
                 <td class="mat-cell cell-layout">
                   <button
                     [disabled]="currentYahtzeeBtn"
@@ -324,8 +468,18 @@
               <tr class="mat-row">
                 <td class="mat-cell">Chance</td>
                 <td class="mat-cell">Score all dice</td>
-                <td class="mat-cell cell-layout">{{ p1_Chance }}</td>
-                <td class="mat-cell cell-layout">{{ p2_Chance }}</td>
+                <td
+                  class="mat-cell cell-layout"
+                  [ngClass]="{ roundScored: p1_ChanceBtnDisabled === true }"
+                >
+                  {{ p1_Chance }}
+                </td>
+                <td
+                  class="mat-cell cell-layout"
+                  [ngClass]="{ roundScored: p2_ChanceBtnDisabled === true }"
+                >
+                  {{ p2_Chance }}
+                </td>
                 <td class="mat-cell cell-layout">
                   <button
                     [disabled]="currentChanceBtn"

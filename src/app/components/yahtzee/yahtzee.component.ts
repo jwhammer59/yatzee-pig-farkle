@@ -308,6 +308,7 @@ export class YahtzeeComponent {
         console.log(this.p2_Sixes);
       }
     }
+    this.totalUpperScores();
     this.resetDice();
     this.disableAddBtn(diceNum, this.activePlayer);
     this.togglePlayer();
@@ -668,6 +669,98 @@ export class YahtzeeComponent {
     this.turnComplete = false;
   }
 
+  totalUpperScores() {
+    this.p1_UpperSubtotal =
+      this.p1_Aces +
+      this.p1_Twos +
+      this.p1_Threes +
+      this.p1_Fours +
+      this.p1_Fives +
+      this.p1_Sixes;
+
+    this.p2_UpperSubtotal =
+      this.p2_Aces +
+      this.p2_Twos +
+      this.p2_Threes +
+      this.p2_Fours +
+      this.p2_Fives +
+      this.p2_Sixes;
+
+    if (this.p1_UpperSubtotal >= 63) {
+      this.p1_UpperBonus = 35;
+    }
+
+    if (this.p2_UpperTotal >= 63) {
+      this.p2_UpperBonus = 35;
+    }
+
+    this.p1_UpperTotal = this.p1_UpperSubtotal + this.p1_UpperBonus;
+    this.p2_UpperTotal = this.p2_UpperSubtotal + this.p2_UpperBonus;
+  }
+
+  totalLowerScores() {
+    this.p1_LowerTotal =
+      this.p1_ThreeOfaKind +
+      this.p1_FourOfaKind +
+      this.p1_SmStraight +
+      this.p1_LgStraight +
+      this.p1_Yahtzee +
+      this.p1_Chance;
+
+    this.p2_LowerTotal =
+      this.p2_ThreeOfaKind +
+      this.p2_FourOfaKind +
+      this.p2_SmStraight +
+      this.p2_LgStraight +
+      this.p2_Yahtzee +
+      this.p2_Chance;
+
+    this.p1_GrandTotal = this.p1_UpperTotal + this.p1_LowerTotal;
+    this.p2_GrandTotal = this.p2_UpperTotal + this.p2_LowerTotal;
+    this.checkForWinner();
+  }
+
+  checkForWinner() {
+    console.log('Winner');
+    if (
+      this.p1_AcesBtnDisabled === true &&
+      this.p1_TwosBtnDisabled === true &&
+      this.p1_ThreesBtnDisabled === true &&
+      this.p1_FoursBtnDisabled === true &&
+      this.p1_FivesBtnDisabled === true &&
+      this.p1_SixesBtnDisabled === true &&
+      this.p1_ThreeKindBtnDisabled === true &&
+      this.p1_FourKindBtnDisabled === true &&
+      this.p1_FullHouseBtnDisabled === true &&
+      this.p1_SmStraightBtnDisabled === true &&
+      this.p1_LgStraightBtnDisabled === true &&
+      this.p1_YahtzeeBtnDisabled === true &&
+      this.p1_ChanceBtnDisabled === true &&
+      this.p2_AcesBtnDisabled === true &&
+      this.p2_TwosBtnDisabled === true &&
+      this.p2_ThreesBtnDisabled === true &&
+      this.p2_FoursBtnDisabled === true &&
+      this.p2_FivesBtnDisabled === true &&
+      this.p2_SixesBtnDisabled === true &&
+      this.p2_ThreeKindBtnDisabled === true &&
+      this.p2_FourKindBtnDisabled === true &&
+      this.p2_FullHouseBtnDisabled === true &&
+      this.p2_SmStraightBtnDisabled === true &&
+      this.p2_LgStraightBtnDisabled === true &&
+      this.p2_YahtzeeBtnDisabled === true &&
+      this.p2_ChanceBtnDisabled === true
+    ) {
+      if (this.p1_GrandTotal > this.p2_GrandTotal) {
+        this.gameResults = `Player 1 Wins! ${this.p1_GrandTotal} to ${this.p2_GrandTotal}`;
+      } else if (this.p1_GrandTotal < this.p2_GrandTotal) {
+        this.gameResults = `Player 2 Wins! ${this.p2_GrandTotal} to ${this.p1_GrandTotal}`;
+      } else {
+        this.gameResults = 'Tie Game!! Try Again.';
+      }
+      this.gameOver = true;
+    }
+  }
+
   resetDice() {
     this.rollCount = 0;
     this.diceRollMax = false;
@@ -719,20 +812,6 @@ export class YahtzeeComponent {
     this.p1_LgStraightBtnDisabled = false;
     this.p1_YahtzeeBtnDisabled = false;
     this.p1_ChanceBtnDisabled = false;
-
-    // this.p1_hasAces = false;
-    // this.p1_hasTwos = false;
-    // this.p1_hasThrees = false;
-    // this.p1_hasFours = false;
-    // this.p1_hasFives = false;
-    // this.p1_hasSixes = false;
-    // this.p1_hasThreeKind = false;
-    // this.p1_hasFourKind = false;
-    // this.p1_hasFullHouse = false;
-    // this.p1_hasSmStraight = false;
-    // this.p1_hasLgStraight = false;
-    // this.p1_hasYahtzee = false;
-    // this.p1_hasChance = false;
   }
 
   resetPlayer2() {
@@ -770,20 +849,6 @@ export class YahtzeeComponent {
     this.p2_LgStraightBtnDisabled = false;
     this.p2_YahtzeeBtnDisabled = false;
     this.p2_ChanceBtnDisabled = false;
-
-    // this.p2_hasAces = false;
-    // this.p2_hasTwos = false;
-    // this.p2_hasThrees = false;
-    // this.p2_hasFours = false;
-    // this.p2_hasFives = false;
-    // this.p2_hasSixes = false;
-    // this.p2_hasThreeKind = false;
-    // this.p2_hasFourKind = false;
-    // this.p2_hasFullHouse = false;
-    // this.p2_hasSmStraight = false;
-    // this.p2_hasLgStraight = false;
-    // this.p2_hasYahtzee = false;
-    // this.p2_hasChance = false;
   }
 
   newGame() {

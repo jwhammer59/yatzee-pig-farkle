@@ -58,8 +58,11 @@ table {
 }
 
 .button-layout {
-  min-height: 40%;
   margin: 20px 0;
+}
+
+.spacer {
+  height: 200px;
 }
 
 h1 {
@@ -72,7 +75,9 @@ h1 {
 }
 
 .currentPlayer {
-  color: yellow;
+  font-size: 1rem;
+  background-color: #0000ff;
+  color: #ffffff;
 }
 
 .secondaryPlayer {
@@ -85,4 +90,23 @@ h1 {
 
 .total-layout {
   font-weight: 500;
+}
+
+.divider {
+  border-bottom: 2px solid #000000;
+}
+
+.roundScored {
+  border: 1px solid #000000;
+  border-radius: 5px;
+  background-color: #d3d3d3;
+}
+
+#result-layout {
+  border: 2px solid #000000;
+  padding: 0.5rem 0;
+  background-color: green;
+  color: white;
+  margin: 0.5rem;
+  border-radius: 10px;
 }
