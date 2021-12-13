@@ -67,11 +67,12 @@
               <tr class="mat-row">
                 <td class="mat-cell">Aces</td>
                 <td class="mat-cell">Score all Aces</td>
-                <td class="mat-cell cell-layout">{{ player1_Aces }}</td>
-                <td class="mat-cell cell-layout">{{ player2_Aces }}</td>
+                <td class="mat-cell cell-layout">{{ p1_Aces }}</td>
+                <td class="mat-cell cell-layout">{{ p2_Aces }}</td>
                 <td class="mat-cell cell-layout">
                   <button
-                    mat-icon-button
+                    [disabled]="p1_AcesBtnDisabled"
+                    mat-stroked-button
                     color="primary"
                     (click)="scoreUpperDice(1)"
                   >
@@ -82,11 +83,12 @@
               <tr class="mat-row">
                 <td class="mat-cell">Twos</td>
                 <td class="mat-cell">Score all Twos</td>
-                <td class="mat-cell cell-layout">{{ player1_Twos }}</td>
-                <td class="mat-cell cell-layout">{{ player2_Twos }}</td>
+                <td class="mat-cell cell-layout">{{ p1_Twos }}</td>
+                <td class="mat-cell cell-layout">{{ p2_Twos }}</td>
                 <td class="mat-cell cell-layout">
                   <button
-                    mat-icon-button
+                    [disabled]="p1_TwosBtnDisabled"
+                    mat-stroked-button
                     color="primary"
                     (click)="scoreUpperDice(2)"
                   >
@@ -97,11 +99,12 @@
               <tr class="mat-row">
                 <td class="mat-cell">Threes</td>
                 <td class="mat-cell">Score all Threes</td>
-                <td class="mat-cell cell-layout">{{ player1_Threes }}</td>
-                <td class="mat-cell cell-layout">{{ player2_Threes }}</td>
+                <td class="mat-cell cell-layout">{{ p1_Threes }}</td>
+                <td class="mat-cell cell-layout">{{ p2_Threes }}</td>
                 <td class="mat-cell cell-layout">
                   <button
-                    mat-icon-button
+                    [disabled]="p1_ThreesBtnDisabled"
+                    mat-stroked-button
                     color="primary"
                     (click)="scoreUpperDice(3)"
                   >
@@ -112,11 +115,11 @@
               <tr class="mat-row">
                 <td class="mat-cell">Fours</td>
                 <td class="mat-cell">Score all Fours</td>
-                <td class="mat-cell cell-layout">{{ player1_Fours }}</td>
-                <td class="mat-cell cell-layout">{{ player2_Fours }}</td>
+                <td class="mat-cell cell-layout">{{ p1_Fours }}</td>
+                <td class="mat-cell cell-layout">{{ p2_Fours }}</td>
                 <td class="mat-cell cell-layout">
                   <button
-                    mat-icon-button
+                    mat-stroked-button
                     color="primary"
                     (click)="scoreUpperDice(4)"
                   >
@@ -127,11 +130,11 @@
               <tr class="mat-row">
                 <td class="mat-cell">Fives</td>
                 <td class="mat-cell">Score all Fives</td>
-                <td class="mat-cell cell-layout">{{ player1_Fives }}</td>
-                <td class="mat-cell cell-layout">{{ player2_Fives }}</td>
+                <td class="mat-cell cell-layout">{{ p1_Fives }}</td>
+                <td class="mat-cell cell-layout">{{ p2_Fives }}</td>
                 <td class="mat-cell cell-layout">
                   <button
-                    mat-icon-button
+                    mat-stroked-button
                     color="primary"
                     (click)="scoreUpperDice(5)"
                   >
@@ -142,11 +145,11 @@
               <tr class="mat-row">
                 <td class="mat-cell">Sixes</td>
                 <td class="mat-cell">Score all Sixes</td>
-                <td class="mat-cell cell-layout">{{ player1_Sixes }}</td>
-                <td class="mat-cell cell-layout">{{ player2_Sixes }}</td>
-                <td class="mat-cell cell-layout">
+                <td class="mat-cell cell-layout">{{ p1_Sixes }}</td>
+                <td class="mat-cell cell-layout">{{ p2_Sixes }}</td>
+                <td class="mat-cell cell-layout button-container">
                   <button
-                    mat-icon-button
+                    mat-stroked-button
                     color="primary"
                     (click)="scoreUpperDice(6)"
                   >
@@ -154,97 +157,40 @@
                   </button>
                 </td>
               </tr>
-              <tr class="mat-row">
+              <tr class="mat-row total-layout">
                 <td class="mat-cell">Total</td>
                 <td class="mat-cell">==></td>
-                <td class="mat-cell cell-layout">
-                  {{ player1_UpperSubtotal }}
+                <td class="mat-cell cell-layout score-totals">
+                  {{ p1_UpperSubtotal }}
                 </td>
-                <td class="mat-cell cell-layout">
-                  {{ player2_UpperSubtotal }}
+                <td class="mat-cell cell-layout score-totals">
+                  {{ p2_UpperSubtotal }}
                 </td>
-                <td class="mat-cell cell-layout">
-                  <button mat-icon-button color="primary">
-                    <mat-icon>add</mat-icon>
-                  </button>
-                </td>
+                <td></td>
               </tr>
-              <tr class="mat-row">
+              <tr class="mat-row total-layout">
                 <td class="mat-cell">Bonus</td>
                 <td class="mat-cell">Score 63</td>
-                <td class="mat-cell cell-layout">{{ player1_UpperBonus }}</td>
-                <td class="mat-cell cell-layout">{{ player2_UpperBonus }}</td>
-                <td class="mat-cell cell-layout">
-                  <button mat-icon-button color="primary">
-                    <mat-icon>add</mat-icon>
-                  </button>
+                <td class="mat-cell cell-layout score-totals">
+                  {{ p1_UpperBonus }}
                 </td>
+                <td class="mat-cell cell-layout score-totals">
+                  {{ p2_UpperBonus }}
+                </td>
+                <td></td>
               </tr>
-              <tr class="mat-row">
+              <tr class="mat-row total-layout">
                 <td class="mat-cell">Upper Total</td>
                 <td class="mat-cell">==></td>
-                <td class="mat-cell cell-layout">
-                  {{ player1_UpperTotal }}
+                <td class="mat-cell cell-layout score-totals">
+                  {{ p1_UpperTotal }}
                 </td>
-                <td class="mat-cell cell-layout">{{ player2_UpperTotal }}</td>
-                <td class="mat-cell cell-layout">
-                  <button mat-icon-button color="primary">
-                    <mat-icon>add</mat-icon>
-                  </button>
+                <td class="mat-cell cell-layout score-totals">
+                  {{ p2_UpperTotal }}
                 </td>
               </tr>
+              <td></td>
             </table>
-            <!-- <table
-              #upperTable
-              mat-table
-              [dataSource]="upperDataSource"
-              class="mat-elevation-z8"
-            >
-              <ng-container matColumnDef="rowName">
-                <th mat-header-cell *matHeaderCellDef>Upper Section</th>
-                <td mat-cell *matCellDef="let element">
-                  {{ element.rowName }}
-                </td>
-              </ng-container>
-              <ng-container matColumnDef="rowScoring">
-                <th mat-header-cell *matHeaderCellDef>How to Play</th>
-                <td mat-cell *matCellDef="let element">
-                  {{ element.rowScoring }}
-                </td>
-              </ng-container>
-              <ng-container matColumnDef="rowPlayer1">
-                <th mat-header-cell *matHeaderCellDef>Player 1</th>
-                <td mat-cell *matCellDef="let element">
-                  {{ element.rowPlayer1 }}
-                </td>
-              </ng-container>
-              <ng-container matColumnDef="rowPlayer2">
-                <th mat-header-cell *matHeaderCellDef>Player 2</th>
-                <td mat-cell *matCellDef="let element">
-                  {{ element.rowPlayer2 }}
-                </td>
-              </ng-container>
-              <ng-container matColumnDef="buttons">
-                <th mat-header-cell *matHeaderCellDef>#</th>
-                <td mat-cell *matCellDef="let element">
-                  <button
-                    *ngIf="
-                      element.rowName !== 'Total' &&
-                      element.rowName !== 'Bonus' &&
-                      element.rowName !== 'Upper Total'
-                    "
-                    (click)="scoreDice(element.id)"
-                    mat-stroked-button
-                    color="primary"
-                  >
-                    <mat-icon>add</mat-icon>
-                  </button>
-                </td>
-              </ng-container>
-
-              <tr mat-header-row *matHeaderRowDef="lowerColumns"></tr>
-              <tr mat-row *matRowDef="let row; columns: lowerColumns"></tr>
-            </table> -->
           </div>
           <div fxFlex="1 1 auto">
             <div fxLayout="column" fxLayoutAlign="space-evenly center">
@@ -279,11 +225,11 @@
               <tr class="mat-row">
                 <td class="mat-cell">3 of a Kind</td>
                 <td class="mat-cell">Score all Dice</td>
-                <td class="mat-cell cell-layout">{{ player1_ThreeOfaKind }}</td>
-                <td class="mat-cell cell-layout">{{ player2_ThreeOfaKind }}</td>
+                <td class="mat-cell cell-layout">{{ p1_ThreeOfaKind }}</td>
+                <td class="mat-cell cell-layout">{{ p2_ThreeOfaKind }}</td>
                 <td class="mat-cell cell-layout">
                   <button
-                    mat-icon-button
+                    mat-stroked-button
                     color="primary"
                     (click)="scoreThreeOfaKind(7)"
                   >
@@ -294,11 +240,11 @@
               <tr class="mat-row">
                 <td class="mat-cell">4 of a Kind</td>
                 <td class="mat-cell">Score all Dice</td>
-                <td class="mat-cell cell-layout">{{ player1_FourOfaKind }}</td>
-                <td class="mat-cell cell-layout">{{ player2_FourOfaKind }}</td>
+                <td class="mat-cell cell-layout">{{ p1_FourOfaKind }}</td>
+                <td class="mat-cell cell-layout">{{ p2_FourOfaKind }}</td>
                 <td class="mat-cell cell-layout">
                   <button
-                    mat-icon-button
+                    mat-stroked-button
                     color="primary"
                     (click)="scoreFourOfaKind(8)"
                   >
@@ -309,11 +255,11 @@
               <tr class="mat-row">
                 <td class="mat-cell">Full House</td>
                 <td class="mat-cell">Score 25</td>
-                <td class="mat-cell cell-layout">{{ player1_FullHouse }}</td>
-                <td class="mat-cell cell-layout">{{ player2_FullHouse }}</td>
+                <td class="mat-cell cell-layout">{{ p1_FullHouse }}</td>
+                <td class="mat-cell cell-layout">{{ p2_FullHouse }}</td>
                 <td class="mat-cell cell-layout">
                   <button
-                    mat-icon-button
+                    mat-stroked-button
                     color="primary"
                     (click)="scoreFullHouse(9)"
                   >
@@ -324,11 +270,11 @@
               <tr class="mat-row">
                 <td class="mat-cell">Sm Straight</td>
                 <td class="mat-cell">Score 30</td>
-                <td class="mat-cell cell-layout">{{ player1_SmStraight }}</td>
-                <td class="mat-cell cell-layout">{{ player2_SmStraight }}</td>
+                <td class="mat-cell cell-layout">{{ p1_SmStraight }}</td>
+                <td class="mat-cell cell-layout">{{ p2_SmStraight }}</td>
                 <td class="mat-cell cell-layout">
                   <button
-                    mat-icon-button
+                    mat-stroked-button
                     color="primary"
                     (click)="scoreSmStraight(10)"
                   >
@@ -339,11 +285,11 @@
               <tr class="mat-row">
                 <td class="mat-cell">Lg Straight</td>
                 <td class="mat-cell">Score 40</td>
-                <td class="mat-cell cell-layout">{{ player1_LgStraight }}</td>
-                <td class="mat-cell cell-layout">{{ player2_LgStraight }}</td>
+                <td class="mat-cell cell-layout">{{ p1_LgStraight }}</td>
+                <td class="mat-cell cell-layout">{{ p2_LgStraight }}</td>
                 <td class="mat-cell cell-layout">
                   <button
-                    mat-icon-button
+                    mat-stroked-button
                     color="primary"
                     (click)="scoreLgStraight(11)"
                   >
@@ -354,11 +300,11 @@
               <tr class="mat-row">
                 <td class="mat-cell">Yahztee</td>
                 <td class="mat-cell">Score 50</td>
-                <td class="mat-cell cell-layout">{{ player1_Yahtzee }}</td>
-                <td class="mat-cell cell-layout">{{ player2_Yahtzee }}</td>
+                <td class="mat-cell cell-layout">{{ p1_Yahtzee }}</td>
+                <td class="mat-cell cell-layout">{{ p2_Yahtzee }}</td>
                 <td class="mat-cell cell-layout">
                   <button
-                    mat-icon-button
+                    mat-stroked-button
                     color="primary"
                     (click)="scoreYahtzee(12)"
                   >
@@ -369,11 +315,11 @@
               <tr class="mat-row">
                 <td class="mat-cell">Chance</td>
                 <td class="mat-cell">Score all dice</td>
-                <td class="mat-cell cell-layout">{{ player1_Chance }}</td>
-                <td class="mat-cell cell-layout">{{ player2_Chance }}</td>
+                <td class="mat-cell cell-layout">{{ p1_Chance }}</td>
+                <td class="mat-cell cell-layout">{{ p2_Chance }}</td>
                 <td class="mat-cell cell-layout">
                   <button
-                    mat-icon-button
+                    mat-stroked-button
                     color="primary"
                     (click)="scoreChance(13)"
                   >
@@ -381,96 +327,40 @@
                   </button>
                 </td>
               </tr>
-              <tr class="mat-row">
+              <tr class="mat-row total-layout">
                 <td class="mat-cell">Upper Total</td>
                 <td class="mat-cell">==></td>
-                <td class="mat-cell cell-layout">
-                  {{ player1_UpperTotal }}
+                <td class="mat-cell cell-layout score-totals">
+                  {{ p1_UpperTotal }}
                 </td>
-                <td class="mat-cell cell-layout">
-                  {{ player2_UpperTotal }}
+                <td class="mat-cell cell-layout score-totals">
+                  {{ p2_UpperTotal }}
                 </td>
-                <td class="mat-cell cell-layout">
-                  <button mat-icon-button color="primary">
-                    <mat-icon>add</mat-icon>
-                  </button>
-                </td>
+                <td></td>
               </tr>
-              <tr class="mat-row">
+              <tr class="mat-row total-layout">
                 <td class="mat-cell">Lower Total</td>
                 <td class="mat-cell">==></td>
-                <td class="mat-cell cell-layout">{{ player1_LowerTotal }}</td>
-                <td class="mat-cell cell-layout">{{ player2_LowerTotal }}</td>
-                <td class="mat-cell cell-layout">
-                  <button mat-icon-button color="primary">
-                    <mat-icon>add</mat-icon>
-                  </button>
+                <td class="mat-cell cell-layout score-totals">
+                  {{ p1_LowerTotal }}
                 </td>
+                <td class="mat-cell cell-layout score-totals">
+                  {{ p2_LowerTotal }}
+                </td>
+                <td></td>
               </tr>
-              <tr class="mat-row">
+              <tr class="mat-row total-layout">
                 <td class="mat-cell">Grand Total</td>
                 <td class="mat-cell">==></td>
-                <td class="mat-cell cell-layout">
-                  {{ player1_GrandTotal }}
+                <td class="mat-cell cell-layout score-totals">
+                  {{ p1_GrandTotal }}
                 </td>
-                <td class="mat-cell cell-layout">{{ player2_GrandTotal }}</td>
-                <td class="mat-cell cell-layout">
-                  <button mat-icon-button color="primary">
-                    <mat-icon>add</mat-icon>
-                  </button>
+                <td class="mat-cell cell-layout score-totals">
+                  {{ p2_GrandTotal }}
                 </td>
+                <td></td>
               </tr>
             </table>
-            <!-- <table
-              mat-table
-              [dataSource]="lowerDataSource"
-              class="mat-elevation-z8"
-            >
-              <ng-container matColumnDef="rowName">
-                <th mat-header-cell *matHeaderCellDef>Lower Section</th>
-                <td mat-cell *matCellDef="let element">
-                  {{ element.rowName }}
-                </td>
-              </ng-container>
-              <ng-container matColumnDef="rowScoring">
-                <th mat-header-cell *matHeaderCellDef>How to Play</th>
-                <td mat-cell *matCellDef="let element">
-                  {{ element.rowScoring }}
-                </td>
-              </ng-container>
-              <ng-container matColumnDef="rowPlayer1">
-                <th mat-header-cell *matHeaderCellDef>Player 1</th>
-                <td mat-cell *matCellDef="let element">
-                  {{ element.rowPlayer1 }}
-                </td>
-              </ng-container>
-              <ng-container matColumnDef="rowPlayer2">
-                <th mat-header-cell *matHeaderCellDef>Player 2</th>
-                <td mat-cell *matCellDef="let element">
-                  {{ element.rowPlayer2 }}
-                </td>
-              </ng-container>
-              <ng-container matColumnDef="buttons">
-                <th mat-header-cell *matHeaderCellDef>#</th>
-                <td mat-cell *matCellDef="let element">
-                  <button
-                    *ngIf="
-                      element.rowName !== 'Lower Total' &&
-                      element.rowName !== 'Upper Total' &&
-                      element.rowName !== 'Grand Total'
-                    "
-                    mat-stroked-button
-                    color="primary"
-                    (click)="scoreDice(element.id)"
-                  >
-                    <mat-icon>add</mat-icon>
-                  </button>
-                </td>
-              </ng-container>
-
-              <tr mat-header-row *matHeaderRowDef="lowerColumns"></tr>
-              <tr mat-row *matRowDef="let row; columns: lowerColumns"></tr>
-            </table> -->
           </div>
         </div>
       </div>

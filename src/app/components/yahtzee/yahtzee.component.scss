@@ -31,6 +31,7 @@ table {
 
 .mat-row {
   text-align: center;
+  border-bottom: 1px solid #000000;
 }
 
 #lower-layout {
@@ -76,4 +77,12 @@ h1 {
 
 .secondaryPlayer {
   color: #808080;
+}
+
+.score-totals {
+  padding: 5px 0;
+}
+
+.total-layout {
+  font-weight: 500;
 }
