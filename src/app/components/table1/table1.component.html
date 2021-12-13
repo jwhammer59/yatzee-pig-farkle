@@ -1,194 +1,510 @@
-<div fxLayout fxLayoutAlign="center center">
-  <div class="layout">
-    <div fxLayout fxLayoutGap="20px">
-      <div fxFlex="4 1 auto">
-        <table class="mat-table">
-          <tr class="mat-header-row">
-            <th class="mat-header-cell">Upper Section</th>
-            <th class="mat-header-cell">How to Play</th>
-            <th class="mat-header-cell">Player 1</th>
-            <th class="mat-header-cell">Player 2</th>
-            <th class="mat-header-cell">#</th>
-          </tr>
-          <tr class="mat-row">
-            <td class="mat-cell">Aces</td>
-            <td class="mat-cell">Score all Aces</td>
-            <td class="mat-cell">0</td>
-            <td class="mat-cell">0</td>
-            <td class="mat-cell">
-              <button mat-icon-button color="primary">
-                <mat-icon>add</mat-icon>
-              </button>
-            </td>
-          </tr>
-          <tr class="mat-row">
-            <td class="mat-cell">Twos</td>
-            <td class="mat-cell">Score all Twos</td>
-            <td class="mat-cell">0</td>
-            <td class="mat-cell">0</td>
-            <td class="mat-cell">
-              <button mat-icon-button color="primary">
-                <mat-icon>add</mat-icon>
-              </button>
-            </td>
-          </tr>
-          <tr class="mat-row">
-            <td class="mat-cell">Threes</td>
-            <td class="mat-cell">Score all Threes</td>
-            <td class="mat-cell">0</td>
-            <td class="mat-cell">0</td>
-            <td class="mat-cell">
-              <button mat-icon-button color="primary">
-                <mat-icon>add</mat-icon>
-              </button>
-            </td>
-          </tr>
-          <tr class="mat-row">
-            <td class="mat-cell">Fours</td>
-            <td class="mat-cell">Score all Fours</td>
-            <td class="mat-cell">0</td>
-            <td class="mat-cell">0</td>
-            <td class="mat-cell">
-              <button mat-icon-button color="primary">
-                <mat-icon>add</mat-icon>
-              </button>
-            </td>
-          </tr>
-          <tr class="mat-row">
-            <td class="mat-cell">Fives</td>
-            <td class="mat-cell">Score all Fives</td>
-            <td class="mat-cell">0</td>
-            <td class="mat-cell">0</td>
-            <td class="mat-cell">
-              <button mat-icon-button color="primary">
-                <mat-icon>add</mat-icon>
-              </button>
-            </td>
-          </tr>
-          <tr class="mat-row">
-            <td class="mat-cell">Sixes</td>
-            <td class="mat-cell">Score all Sixes</td>
-            <td class="mat-cell">0</td>
-            <td class="mat-cell">0</td>
-            <td class="mat-cell">
-              <button mat-icon-button color="primary">
-                <mat-icon>add</mat-icon>
-              </button>
-            </td>
-          </tr>
-          <tr class="mat-row">
-            <td class="mat-cell">Total</td>
-            <td class="mat-cell">==></td>
-            <td class="mat-cell">0</td>
-            <td class="mat-cell">0</td>
-            <td class="mat-cell">
-              <button mat-icon-button color="primary">
-                <mat-icon>add</mat-icon>
-              </button>
-            </td>
-          </tr>
-          <tr class="mat-row">
-            <td class="mat-cell">Bonus</td>
-            <td class="mat-cell">63</td>
-            <td class="mat-cell">0</td>
-            <td class="mat-cell">0</td>
-            <td class="mat-cell">
-              <button mat-icon-button color="primary">
-                <mat-icon>add</mat-icon>
-              </button>
-            </td>
-          </tr>
-          <tr class="mat-row">
-            <td class="mat-cell">Upper Total</td>
-            <td class="mat-cell">==></td>
-            <td class="mat-cell">0</td>
-            <td class="mat-cell">0</td>
-            <td class="mat-cell">
-              <button mat-icon-button color="primary">
-                <mat-icon>add</mat-icon>
-              </button>
-            </td>
-          </tr>
-        </table>
+<div>
+  <mat-card color="accent">
+    <mat-card-header>
+      <mat-card-title>Yahtzee</mat-card-title>
+    </mat-card-header>
+    <div fxLayout fxLayoutAlign="space-evenly">
+      <div>
+        <img
+          [ngClass]="{ chosenDice: dice1Disabled === true }"
+          src="assets/dice{{ dice1Value }}.png"
+          alt="dice 1"
+          (click)="chooseDice1()"
+        />
       </div>
-      <div fxFlex="1 1 auto"></div>
-      <div fxFlex="4 1 auto">
-        <table class="mat-table">
-          <tr class="mat-header-row">
-            <th class="mat-header-cell">Lower Section</th>
-            <th class="mat-header-cell">How to Play</th>
-            <th class="mat-header-cell">Player 1</th>
-            <th class="mat-header-cell">Player 2</th>
-            <th class="mat-header-cell">#</th>
-          </tr>
-          <tr class="mat-row">
-            <td class="mat-cell">Aces</td>
-            <td class="mat-cell">Score all Aces</td>
-            <td class="mat-cell">0</td>
-            <td class="mat-cell">0</td>
-            <td class="mat-cell">
-              <button mat-icon-button color="primary">
-                <mat-icon>add</mat-icon>
-              </button>
-            </td>
-          </tr>
-          <tr class="mat-row">
-            <td class="mat-cell">Twos</td>
-            <td class="mat-cell">Score all Twos</td>
-            <td class="mat-cell">0</td>
-            <td class="mat-cell">0</td>
-            <td class="mat-cell">
-              <button mat-icon-button color="primary">
-                <mat-icon>add</mat-icon>
-              </button>
-            </td>
-          </tr>
-          <tr class="mat-row">
-            <td class="mat-cell">Threes</td>
-            <td class="mat-cell">Score all Threes</td>
-            <td class="mat-cell">0</td>
-            <td class="mat-cell">0</td>
-            <td class="mat-cell">
-              <button mat-icon-button color="primary">
-                <mat-icon>add</mat-icon>
-              </button>
-            </td>
-          </tr>
-          <tr class="mat-row">
-            <td class="mat-cell">Fours</td>
-            <td class="mat-cell">Score all Fours</td>
-            <td class="mat-cell">0</td>
-            <td class="mat-cell">0</td>
-            <td class="mat-cell">
-              <button mat-icon-button color="primary">
-                <mat-icon>add</mat-icon>
-              </button>
-            </td>
-          </tr>
-          <tr class="mat-row">
-            <td class="mat-cell">Fives</td>
-            <td class="mat-cell">Score all Fives</td>
-            <td class="mat-cell">0</td>
-            <td class="mat-cell">0</td>
-            <td class="mat-cell">
-              <button mat-icon-button color="primary">
-                <mat-icon>add</mat-icon>
-              </button>
-            </td>
-          </tr>
-          <tr class="mat-row">
-            <td class="mat-cell">Sixes</td>
-            <td class="mat-cell">Score all Sixes</td>
-            <td class="mat-cell">0</td>
-            <td class="mat-cell">0</td>
-            <td class="mat-cell">
-              <button mat-icon-button color="primary">
-                <mat-icon>add</mat-icon>
-              </button>
-            </td>
-          </tr>
-        </table>
+      <div>
+        <img
+          [ngClass]="{ chosenDice: dice2Disabled === true }"
+          src="assets/dice{{ dice2Value }}.png"
+          alt="dice 2"
+          (click)="chooseDice2()"
+        />
       </div>
+      <div>
+        <img
+          [ngClass]="{ chosenDice: dice3Disabled === true }"
+          src="assets/dice{{ dice3Value }}.png"
+          alt="dice 3"
+          (click)="chooseDice3()"
+        />
+      </div>
+      <div>
+        <img
+          [ngClass]="{ chosenDice: dice4Disabled === true }"
+          src="assets/dice{{ dice4Value }}.png"
+          alt="dice 4"
+          (click)="chooseDice4()"
+        />
+      </div>
+      <div>
+        <img
+          [ngClass]="{ chosenDice: dice5Disabled === true }"
+          src="assets/dice{{ dice5Value }}.png"
+          alt="dice 5"
+          (click)="chooseDice5()"
+        />
+      </div>
+    </div>
+    <mat-card-footer>
+      <div fxLayout fxLayoutAlign="space-evenly">
+        <div>
+          <h1>Player: {{ activePlayer }}</h1>
+        </div>
+        <div id="result-layout" [hidden]="!gameOver">
+          <h2>{{ gameResults }}</h2>
+        </div>
+        <div>
+          <h1>Roll #: {{ rollNumber }}</h1>
+        </div>
+      </div>
+    </mat-card-footer>
+  </mat-card>
+</div>
+
+<div fxLayout fxLayoutAlign="space-evenly">
+  <div fxLayout="column" fxFlex="1 1 auto">
+    <div fxFlexAlign="center">
+      <button
+        [disabled]="turnComplete || gameOver"
+        mat-raised-button
+        color="primary"
+        (click)="rollDice()"
+      >
+        Roll Dice
+      </button>
+    </div>
+  </div>
+  <div fxFlex="1 1 auto">
+    <table class="table table-sm table-bordered">
+      <thead>
+        <tr>
+          <th>Upper Section</th>
+          <th>How to Score</th>
+          <th [ngClass]="{ currentPlayer: activePlayer === 1 }">Player 1</th>
+          <th [ngClass]="{ currentPlayer: activePlayer === 2 }">Player 2</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Aces</td>
+          <td>Scores only Aces</td>
+          <td
+            class="has-text-centered"
+            [ngClass]="{ roundScored: p1AcesBtnDisabled === true }"
+          >
+            {{ p1Aces }}
+          </td>
+          <td
+            class="has-text-centered"
+            [ngClass]="{ roundScored: p2AcesBtnDisabled === true }"
+          >
+            {{ p2Aces }}
+          </td>
+          <td>
+            <button
+              type="button"
+              class="btn btn-primary btn-success btn-sm"
+              [disabled]="currentAcesBtn"
+              (click)="addScore(1)"
+            >
+              +
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td>Twos</td>
+          <td>Scores only Twos</td>
+          <td
+            class="has-text-centered"
+            [ngClass]="{ roundScored: p1TwosBtnDisabled === true }"
+          >
+            {{ p1Twos }}
+          </td>
+          <td
+            class="has-text-centered"
+            [ngClass]="{ roundScored: p2TwosBtnDisabled === true }"
+          >
+            {{ p2Twos }}
+          </td>
+          <td>
+            <button
+              type="button"
+              class="btn btn-primary btn-success btn-sm"
+              [disabled]="currentTwosBtn"
+              (click)="addScore(2)"
+            >
+              +
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td>Threes</td>
+          <td>Scores only Threes</td>
+          <td
+            class="has-text-centered"
+            [ngClass]="{ roundScored: p1ThreesBtnDisabled === true }"
+          >
+            {{ p1Threes }}
+          </td>
+          <td
+            class="has-text-centered"
+            [ngClass]="{ roundScored: p2ThreesBtnDisabled === true }"
+          >
+            {{ p2Threes }}
+          </td>
+          <td>
+            <button
+              type="button"
+              class="btn btn-primary btn-success btn-sm"
+              [disabled]="currentThreesBtn"
+              (click)="addScore(3)"
+            >
+              +
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td>Fours</td>
+          <td>Scores only Fours</td>
+          <td
+            class="has-text-centered"
+            [ngClass]="{ roundScored: p1FoursBtnDisabled === true }"
+          >
+            {{ p1Fours }}
+          </td>
+          <td
+            class="has-text-centered"
+            [ngClass]="{ roundScored: p2FoursBtnDisabled === true }"
+          >
+            {{ p2Fours }}
+          </td>
+          <td>
+            <button
+              type="button"
+              class="btn btn-primary btn-success btn-sm"
+              [disabled]="currentFoursBtn"
+              (click)="addScore(4)"
+            >
+              +
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td>Fives</td>
+          <td>Scores only Fives</td>
+          <td
+            class="has-text-centered"
+            [ngClass]="{ roundScored: p1FivesBtnDisabled === true }"
+          >
+            {{ p1Fives }}
+          </td>
+          <td
+            class="has-text-centered"
+            [ngClass]="{ roundScored: p2FivesBtnDisabled === true }"
+          >
+            {{ p2Fives }}
+          </td>
+          <td>
+            <button
+              type="button"
+              class="btn btn-primary btn-success btn-sm"
+              [disabled]="currentFivesBtn"
+              (click)="addScore(5)"
+            >
+              +
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td>Sixes</td>
+          <td>Scores only Sixes</td>
+          <td
+            class="has-text-centered"
+            [ngClass]="{ roundScored: p1SixesBtnDisabled === true }"
+          >
+            {{ p1Sixes }}
+          </td>
+          <td
+            class="has-text-centered"
+            [ngClass]="{ roundScored: p2SixesBtnDisabled === true }"
+          >
+            {{ p2Sixes }}
+          </td>
+          <td>
+            <button
+              type="button"
+              class="btn btn-primary btn-success btn-sm"
+              [disabled]="currentSixesBtn"
+              (click)="addScore(6)"
+            >
+              +
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td>Total Score</td>
+          <td>--></td>
+          <td class="has-text-centered">{{ p1UpTotal }}</td>
+          <td class="has-text-centered">{{ p2UpTotal }}</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Bonus</td>
+          <td>Add 35 if over 63</td>
+          <td class="has-text-centered">{{ p1Bonus }}</td>
+          <td class="has-text-centered">{{ p2Bonus }}</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Upper Total</td>
+          <td>--></td>
+          <td class="has-text-centered">{{ p1UpGrandTotal }}</td>
+          <td class="has-text-centered">{{ p2UpGrandTotal }}</td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <table class="table table-sm table-bordered">
+      <thead>
+        <tr>
+          <th>Lower Section</th>
+          <th>How to Score</th>
+          <th [ngClass]="{ currentPlayer: activePlayer === 1 }">Player 1</th>
+          <th [ngClass]="{ currentPlayer: activePlayer === 2 }">Player 2</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>3 of a Kind</td>
+          <td>Scores all Dice</td>
+          <td
+            class="has-text-centered"
+            [ngClass]="{ roundScored: p1ThreeKindBtnDisabled === true }"
+          >
+            {{ p1ThreeKind }}
+          </td>
+          <td
+            class="has-text-centered"
+            [ngClass]="{ roundScored: p2ThreeKindBtnDisabled === true }"
+          >
+            {{ p2ThreeKind }}
+          </td>
+          <td>
+            <button
+              type="button"
+              class="btn btn-primary btn-success btn-sm"
+              [disabled]="currentThreeKindBtn"
+              (click)="addScore(7)"
+            >
+              +
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td>4 of a Kind</td>
+          <td>Scores all Dice</td>
+          <td
+            class="has-text-centered"
+            [ngClass]="{ roundScored: p1FourKindBtnDisabled === true }"
+          >
+            {{ p1FourKind }}
+          </td>
+          <td
+            class="has-text-centered"
+            [ngClass]="{ roundScored: p2FourKindBtnDisabled === true }"
+          >
+            {{ p2FourKind }}
+          </td>
+          <td>
+            <button
+              type="button"
+              class="btn btn-primary btn-success btn-sm"
+              [disabled]="currentFourKindBtn"
+              (click)="addScore(8)"
+            >
+              +
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td>Full House</td>
+          <td>Scores 25</td>
+          <td
+            class="has-text-centered"
+            [ngClass]="{ roundScored: p1FullHouseBtnDisabled === true }"
+          >
+            {{ p1FullHouse }}
+          </td>
+          <td
+            class="has-text-centered"
+            [ngClass]="{ roundScored: p2FullHouseBtnDisabled === true }"
+          >
+            {{ p2FullHouse }}
+          </td>
+          <td>
+            <button
+              type="button"
+              class="btn btn-primary btn-success btn-sm"
+              [disabled]="currentFullHouseBtn"
+              (click)="addScore(9)"
+            >
+              +
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td>Sm Straight</td>
+          <td>Scores 30</td>
+          <td
+            class="has-text-centered"
+            [ngClass]="{
+              roundScored: p1SmStraightBtnDisabled === true
+            }"
+          >
+            {{ p1SmStraight }}
+          </td>
+          <td
+            class="has-text-centered"
+            [ngClass]="{
+              roundScored: p2SmStraightBtnDisabled === true
+            }"
+          >
+            {{ p2SmStraight }}
+          </td>
+          <td>
+            <button
+              type="button"
+              class="btn btn-primary btn-success btn-sm"
+              [disabled]="currentSmStraightBtn"
+              (click)="addScore(10)"
+            >
+              +
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td>Lg Straight</td>
+          <td>Scores 40</td>
+          <td
+            class="has-text-centered"
+            [ngClass]="{
+              roundScored: p1LgStraightBtnDisabled === true
+            }"
+          >
+            {{ p1LgStraight }}
+          </td>
+          <td
+            class="has-text-centered"
+            [ngClass]="{
+              roundScored: p2LgStraightBtnDisabled === true
+            }"
+          >
+            {{ p2LgStraight }}
+          </td>
+          <td>
+            <button
+              type="button"
+              class="btn btn-primary btn-success btn-sm"
+              [disabled]="currentLgStraightBtn"
+              (click)="addScore(11)"
+            >
+              +
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td>Yatzee</td>
+          <td>Scores 50</td>
+          <td
+            class="has-text-centered"
+            [ngClass]="{ roundScored: p1YahtzeeBtnDisabled === true }"
+          >
+            {{ p1Yahtzee }}
+          </td>
+          <td
+            class="has-text-centered"
+            [ngClass]="{ roundScored: p2YahtzeeBtnDisabled === true }"
+          >
+            {{ p2Yahtzee }}
+          </td>
+          <td>
+            <button
+              type="button"
+              class="btn btn-primary btn-success btn-sm"
+              [disabled]="currentYahtzeeBtn"
+              (click)="addScore(12)"
+            >
+              +
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td>Chance</td>
+          <td>Scores all Dice</td>
+          <td
+            class="has-text-centered"
+            [ngClass]="{ roundScored: p1ChanceBtnDisabled === true }"
+          >
+            {{ p1Chance }}
+          </td>
+          <td
+            class="has-text-centered"
+            [ngClass]="{ roundScored: p2ChanceBtnDisabled === true }"
+          >
+            {{ p2Chance }}
+          </td>
+          <td>
+            <button
+              type="button"
+              class="btn btn-primary btn-success btn-sm"
+              [disabled]="currentChanceBtn"
+              (click)="addScore(13)"
+            >
+              +
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td>Lower Total</td>
+          <td>--></td>
+          <td class="has-text-centered">{{ p1LowTotal }}</td>
+          <td class="has-text-centered">{{ p2LowTotal }}</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Upper Total</td>
+          <td>--></td>
+          <td class="has-text-centered">{{ p1UpTotal }}</td>
+          <td class="has-text-centered">{{ p2UpTotal }}</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Grand Total</td>
+          <td>--></td>
+          <td class="has-text-centered">{{ p1GrandTotal }}</td>
+          <td class="has-text-centered">{{ p2GrandTotal }}</td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div fxLayout="column" fxFlex="1 1 auto">
+    <div fxFlexAlign="center">
+      <button mat-raised-button color="warn" (click)="resetGame()">
+        New Game
+      </button>
     </div>
   </div>
 </div>
+
+<footer class="footer">
+  <div fxLayout fxLayoutAlign="center center">
+    <p>
+      <strong>Yatzee</strong> by
+      <a href="https://jhammermedia.com">jHammer Media</a>.
+    </p>
+  </div>
+</footer>

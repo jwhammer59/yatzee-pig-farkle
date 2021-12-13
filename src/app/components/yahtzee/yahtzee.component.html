@@ -71,7 +71,7 @@
                 <td class="mat-cell cell-layout">{{ p2_Aces }}</td>
                 <td class="mat-cell cell-layout">
                   <button
-                    [disabled]="p1_AcesBtnDisabled"
+                    [disabled]="currentAcesBtn"
                     mat-stroked-button
                     color="primary"
                     (click)="scoreUpperDice(1)"
@@ -87,7 +87,7 @@
                 <td class="mat-cell cell-layout">{{ p2_Twos }}</td>
                 <td class="mat-cell cell-layout">
                   <button
-                    [disabled]="p1_TwosBtnDisabled"
+                    [disabled]="currentTwosBtn"
                     mat-stroked-button
                     color="primary"
                     (click)="scoreUpperDice(2)"
@@ -103,7 +103,7 @@
                 <td class="mat-cell cell-layout">{{ p2_Threes }}</td>
                 <td class="mat-cell cell-layout">
                   <button
-                    [disabled]="p1_ThreesBtnDisabled"
+                    [disabled]="currentThreesBtn"
                     mat-stroked-button
                     color="primary"
                     (click)="scoreUpperDice(3)"
@@ -119,6 +119,7 @@
                 <td class="mat-cell cell-layout">{{ p2_Fours }}</td>
                 <td class="mat-cell cell-layout">
                   <button
+                    [disabled]="currentFoursBtn"
                     mat-stroked-button
                     color="primary"
                     (click)="scoreUpperDice(4)"
@@ -134,6 +135,7 @@
                 <td class="mat-cell cell-layout">{{ p2_Fives }}</td>
                 <td class="mat-cell cell-layout">
                   <button
+                    [disabled]="currentFivesBtn"
                     mat-stroked-button
                     color="primary"
                     (click)="scoreUpperDice(5)"
@@ -149,6 +151,7 @@
                 <td class="mat-cell cell-layout">{{ p2_Sixes }}</td>
                 <td class="mat-cell cell-layout button-container">
                   <button
+                    [disabled]="currentSixesBtn"
                     mat-stroked-button
                     color="primary"
                     (click)="scoreUpperDice(6)"
@@ -229,6 +232,7 @@
                 <td class="mat-cell cell-layout">{{ p2_ThreeOfaKind }}</td>
                 <td class="mat-cell cell-layout">
                   <button
+                    [disabled]="currentThreeKindBtn"
                     mat-stroked-button
                     color="primary"
                     (click)="scoreThreeOfaKind(7)"
@@ -244,6 +248,7 @@
                 <td class="mat-cell cell-layout">{{ p2_FourOfaKind }}</td>
                 <td class="mat-cell cell-layout">
                   <button
+                    [disabled]="currentFourKindBtn"
                     mat-stroked-button
                     color="primary"
                     (click)="scoreFourOfaKind(8)"
@@ -259,6 +264,7 @@
                 <td class="mat-cell cell-layout">{{ p2_FullHouse }}</td>
                 <td class="mat-cell cell-layout">
                   <button
+                    [disabled]="currentFullHouseBtn"
                     mat-stroked-button
                     color="primary"
                     (click)="scoreFullHouse(9)"
@@ -274,6 +280,7 @@
                 <td class="mat-cell cell-layout">{{ p2_SmStraight }}</td>
                 <td class="mat-cell cell-layout">
                   <button
+                    [disabled]="currentSmStraightBtn"
                     mat-stroked-button
                     color="primary"
                     (click)="scoreSmStraight(10)"
@@ -289,6 +296,7 @@
                 <td class="mat-cell cell-layout">{{ p2_LgStraight }}</td>
                 <td class="mat-cell cell-layout">
                   <button
+                    [disabled]="currentLgStraightBtn"
                     mat-stroked-button
                     color="primary"
                     (click)="scoreLgStraight(11)"
@@ -304,6 +312,7 @@
                 <td class="mat-cell cell-layout">{{ p2_Yahtzee }}</td>
                 <td class="mat-cell cell-layout">
                   <button
+                    [disabled]="currentYahtzeeBtn"
                     mat-stroked-button
                     color="primary"
                     (click)="scoreYahtzee(12)"
@@ -319,6 +328,7 @@
                 <td class="mat-cell cell-layout">{{ p2_Chance }}</td>
                 <td class="mat-cell cell-layout">
                   <button
+                    [disabled]="currentChanceBtn"
                     mat-stroked-button
                     color="primary"
                     (click)="scoreChance(13)"

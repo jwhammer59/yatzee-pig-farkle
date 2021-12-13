@@ -1,11 +1,65 @@
-table {
-  width: 100%;
+mat-card {
+  margin: 1rem 2rem;
 }
 
-.mat-row {
+mat-card-footer h1 {
+  color: #000000;
+  text-align: center;
+  margin-top: 1rem;
+}
+
+img {
+  width: 75px;
+  height: 75px;
+}
+
+tr,
+td {
   text-align: center;
 }
 
-.layout {
-  width: 100%;
+.dice-layout {
+  width: 4rem;
+  height: 4rem;
+}
+
+.chosenDice {
+  opacity: 0.5;
+}
+
+.currentPlayer {
+  background-color: yellow;
+  color: black;
+  font-size: 1.1rem;
+}
+
+.roundScored {
+  background-color: green;
+  color: white;
+}
+
+.roll-layout {
+  background-color: #d3d3d3;
+  padding: 0.5rem 0;
+  border-radius: 5px;
+}
+
+#result-layout {
+  border: 2px solid #000000;
+  padding: 0.5rem 0;
+  background-color: green;
+  color: white;
+  margin: 0.5rem;
+  border-radius: 10px;
+}
+
+.button-layout {
+  margin: 0 auto;
+  display: block;
+}
+
+.footer {
+  background-color: #673ab7;
+  padding: 10px 0;
+  color: #ffffff;
 }

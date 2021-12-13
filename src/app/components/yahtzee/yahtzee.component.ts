@@ -1,4 +1,3 @@
-import { ThrowStmt } from '@angular/compiler';
 import { Component, ViewChild } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
@@ -38,14 +37,6 @@ export class YahtzeeComponent {
   p1_LowerTotal: number = 0;
   p1_GrandTotal: number = 0;
 
-  p1_hasThreeKind: boolean = false;
-  p1_hasFourKind: boolean = false;
-  p1_hasFullHouse: boolean = false;
-  p1_hasSmStraight: boolean = false;
-  p1_hasLgStraight: boolean = false;
-  p1_hasYahtzee: boolean = false;
-  p1_hasChance: boolean = false;
-
   p1_AcesBtnDisabled: boolean = false;
   p1_TwosBtnDisabled: boolean = false;
   p1_ThreesBtnDisabled: boolean = false;
@@ -79,20 +70,6 @@ export class YahtzeeComponent {
   p2_UpperTotal: number = 0;
   p2_LowerTotal: number = 0;
   p2_GrandTotal: number = 0;
-
-  p2_hasAces: boolean = false;
-  p2_hasTwos: boolean = false;
-  p2_hasThrees: boolean = false;
-  p2_hasFours: boolean = false;
-  p2_hasFives: boolean = false;
-  p2_hasSixes: boolean = false;
-  p2_hasThreeKind: boolean = false;
-  p2_hasFourKind: boolean = false;
-  p2_hasFullHouse: boolean = false;
-  p2_hasSmStraight: boolean = false;
-  p2_hasLgStraight: boolean = false;
-  p2_hasYahtzee: boolean = false;
-  p2_hasChance: boolean = false;
 
   p2_AcesBtnDisabled: boolean = false;
   p2_TwosBtnDisabled: boolean = false;
@@ -281,51 +258,51 @@ export class YahtzeeComponent {
       }
     }
     if (this.activePlayer === 2) {
-      if (diceNum === 1 && !this.p2_hasAces) {
+      if (diceNum === 1 && !this.p2_AcesBtnDisabled) {
         this.rolledDiceArray.forEach((el) => {
           if (el === 1) {
             this.p2_Aces += 1;
-            this.p2_hasAces = true;
+            this.p2_AcesBtnDisabled = true;
           }
         });
         console.log(this.p2_Aces);
-      } else if (diceNum === 2 && !this.p2_hasTwos) {
+      } else if (diceNum === 2 && !this.p2_TwosBtnDisabled) {
         this.rolledDiceArray.forEach((el) => {
           if (el === 2) {
             this.p2_Twos += 2;
-            this.p2_hasTwos = true;
+            this.p2_TwosBtnDisabled = true;
           }
         });
         console.log(this.p2_Twos);
-      } else if (diceNum === 3 && !this.p2_hasThrees) {
+      } else if (diceNum === 3 && !this.p2_ThreesBtnDisabled) {
         this.rolledDiceArray.forEach((el) => {
           if (el === 3) {
             this.p2_Threes += 3;
-            this.p2_hasThrees = true;
+            this.p2_ThreesBtnDisabled = true;
           }
         });
         console.log(this.p2_Threes);
-      } else if (diceNum === 4 && !this.p2_hasFours) {
+      } else if (diceNum === 4 && !this.p2_FoursBtnDisabled) {
         this.rolledDiceArray.forEach((el) => {
           if (el === 4) {
             this.p2_Fours += 4;
-            this.p2_hasFours = true;
+            this.p2_FoursBtnDisabled = true;
           }
         });
         console.log(this.p2_Fours);
-      } else if (diceNum === 5 && !this.p2_hasFives) {
+      } else if (diceNum === 5 && !this.p2_FivesBtnDisabled) {
         this.rolledDiceArray.forEach((el) => {
           if (el === 5) {
             this.p2_Fives += 5;
-            this.p2_hasFives = true;
+            this.p2_FivesBtnDisabled = true;
           }
         });
         console.log(this.p2_Fives);
-      } else if (diceNum === 6 && !this.p2_hasSixes) {
+      } else if (diceNum === 6 && !this.p2_SixesBtnDisabled) {
         this.rolledDiceArray.forEach((el) => {
           if (el === 6) {
             this.p2_Sixes += 6;
-            this.p2_hasSixes = true;
+            this.p2_SixesBtnDisabled = true;
           }
         });
         console.log(this.p2_Sixes);
@@ -441,10 +418,10 @@ export class YahtzeeComponent {
     ) {
       if (this.activePlayer === 1) {
         this.p1_SmStraight = 30;
-        this.p1_hasSmStraight = true;
+        this.p1_SmStraightBtnDisabled = true;
       } else {
         this.p2_SmStraight = 30;
-        this.p2_hasSmStraight = true;
+        this.p2_SmStraightBtnDisabled = true;
       }
     }
     this.resetDice();
@@ -468,10 +445,10 @@ export class YahtzeeComponent {
     ) {
       if (this.activePlayer === 1) {
         this.p1_LgStraight = 40;
-        this.p1_hasLgStraight = true;
+        this.p1_LgStraightBtnDisabled = true;
       } else {
         this.p2_LgStraight = 40;
-        this.p2_hasLgStraight = true;
+        this.p2_LgStraightBtnDisabled = true;
       }
     }
     this.resetDice();
@@ -621,6 +598,74 @@ export class YahtzeeComponent {
 
   setActiveButtons() {
     console.log('set active buttons');
+    if (this.activePlayer === 1) {
+      this.currentAcesBtn = this.p1_AcesBtnDisabled;
+    } else {
+      this.currentAcesBtn = this.p2_AcesBtnDisabled;
+    }
+    if (this.activePlayer === 1) {
+      this.currentTwosBtn = this.p1_TwosBtnDisabled;
+    } else {
+      this.currentTwosBtn = this.p2_TwosBtnDisabled;
+    }
+    if (this.activePlayer === 1) {
+      this.currentThreesBtn = this.p1_ThreesBtnDisabled;
+    } else {
+      this.currentThreesBtn = this.p2_ThreesBtnDisabled;
+    }
+    if (this.activePlayer === 1) {
+      this.currentFoursBtn = this.p1_FoursBtnDisabled;
+    } else {
+      this.currentFoursBtn = this.p2_FoursBtnDisabled;
+    }
+    if (this.activePlayer === 1) {
+      this.currentFivesBtn = this.p1_FivesBtnDisabled;
+    } else {
+      this.currentFivesBtn = this.p2_FivesBtnDisabled;
+    }
+    if (this.activePlayer === 1) {
+      this.currentSixesBtn = this.p1_SixesBtnDisabled;
+    } else {
+      this.currentSixesBtn = this.p2_SixesBtnDisabled;
+    }
+    if (this.activePlayer === 1) {
+      this.currentThreeKindBtn = this.p1_ThreeKindBtnDisabled;
+    } else {
+      this.currentThreeKindBtn = this.p2_ThreeKindBtnDisabled;
+    }
+    if (this.activePlayer === 1) {
+      this.currentFourKindBtn = this.p1_FourKindBtnDisabled;
+    } else {
+      this.currentFourKindBtn = this.p2_FourKindBtnDisabled;
+    }
+    if (this.activePlayer === 1) {
+      this.currentFullHouseBtn = this.p1_FullHouseBtnDisabled;
+    } else {
+      this.currentFullHouseBtn = this.p2_FullHouseBtnDisabled;
+    }
+    if (this.activePlayer === 1) {
+      this.currentSmStraightBtn = this.p1_SmStraightBtnDisabled;
+    } else {
+      this.currentSmStraightBtn = this.p2_SmStraightBtnDisabled;
+    }
+    if (this.activePlayer === 1) {
+      this.currentLgStraightBtn = this.p1_LgStraightBtnDisabled;
+    } else {
+      this.currentLgStraightBtn = this.p2_LgStraightBtnDisabled;
+    }
+    if (this.activePlayer === 1) {
+      this.currentYahtzeeBtn = this.p1_YahtzeeBtnDisabled;
+    } else {
+      this.currentYahtzeeBtn = this.p2_YahtzeeBtnDisabled;
+    }
+    if (this.activePlayer === 1) {
+      this.currentChanceBtn = this.p1_ChanceBtnDisabled;
+    } else {
+      this.currentChanceBtn = this.p2_ChanceBtnDisabled;
+    }
+
+    this.rollCount = 0;
+    this.turnComplete = false;
   }
 
   resetDice() {
