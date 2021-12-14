@@ -798,20 +798,6 @@ export class YahtzeeComponent {
     this.p1_UpperTotal = 0;
     this.p1_LowerTotal = 0;
     this.p1_GrandTotal = 0;
-
-    this.p1_AcesBtnDisabled = false;
-    this.p1_TwosBtnDisabled = false;
-    this.p1_ThreesBtnDisabled = false;
-    this.p1_FoursBtnDisabled = false;
-    this.p1_FivesBtnDisabled = false;
-    this.p1_SixesBtnDisabled = false;
-    this.p1_ThreeKindBtnDisabled = false;
-    this.p1_FourKindBtnDisabled = false;
-    this.p1_FullHouseBtnDisabled = false;
-    this.p1_SmStraightBtnDisabled = false;
-    this.p1_LgStraightBtnDisabled = false;
-    this.p1_YahtzeeBtnDisabled = false;
-    this.p1_ChanceBtnDisabled = false;
   }
 
   resetPlayer2() {
@@ -835,6 +821,23 @@ export class YahtzeeComponent {
     this.p2_UpperTotal = 0;
     this.p2_LowerTotal = 0;
     this.p2_GrandTotal = 0;
+  }
+
+  resetButtons() {
+    console.log('reset scoring buttons');
+    this.p1_AcesBtnDisabled = false;
+    this.p1_TwosBtnDisabled = false;
+    this.p1_ThreesBtnDisabled = false;
+    this.p1_FoursBtnDisabled = false;
+    this.p1_FivesBtnDisabled = false;
+    this.p1_SixesBtnDisabled = false;
+    this.p1_ThreeKindBtnDisabled = false;
+    this.p1_FourKindBtnDisabled = false;
+    this.p1_FullHouseBtnDisabled = false;
+    this.p1_SmStraightBtnDisabled = false;
+    this.p1_LgStraightBtnDisabled = false;
+    this.p1_YahtzeeBtnDisabled = false;
+    this.p1_ChanceBtnDisabled = false;
 
     this.p2_AcesBtnDisabled = false;
     this.p2_TwosBtnDisabled = false;
@@ -849,12 +852,29 @@ export class YahtzeeComponent {
     this.p2_LgStraightBtnDisabled = false;
     this.p2_YahtzeeBtnDisabled = false;
     this.p2_ChanceBtnDisabled = false;
+
+    this.currentAcesBtn = false;
+    this.currentTwosBtn = false;
+    this.currentThreesBtn = false;
+    this.currentFoursBtn = false;
+    this.currentFivesBtn = false;
+    this.currentSixesBtn = false;
+    this.currentThreeKindBtn = false;
+    this.currentFourKindBtn = false;
+    this.currentFullHouseBtn = false;
+    this.currentSmStraightBtn = false;
+    this.currentLgStraightBtn = false;
+    this.currentYahtzeeBtn = false;
+    this.currentChanceBtn = false;
   }
 
   newGame() {
     console.log('New Game');
+    this.activePlayer = 1;
+    this.gameOver = false;
     this.resetDice();
     this.resetPlayer1();
     this.resetPlayer2();
+    this.resetButtons();
   }
 }

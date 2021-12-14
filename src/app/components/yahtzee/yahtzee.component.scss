@@ -29,6 +29,11 @@ table {
   text-align: center;
 }
 
+.mat-header-cell {
+  font-weight: 900;
+  font-size: 0.9rem;
+}
+
 .mat-row {
   text-align: center;
   border-bottom: 1px solid #000000;
@@ -76,8 +81,11 @@ h1 {
 
 .currentPlayer {
   font-size: 1rem;
-  background-color: #0000ff;
+  background-color: #673ab7;
   color: #ffffff;
+  border: 1px solid #000000;
+  border-radius: 5px;
+  box-shadow: 3px 3px 3px #888888;
 }
 
 .secondaryPlayer {

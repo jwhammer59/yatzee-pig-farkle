@@ -10,17 +10,22 @@
       <a mat-button [routerLink]="'/pig'"> Pig Dice </a>
       <a mat-button [routerLink]="'/yahtzee'"> Yahtzee </a>
       <a mat-button [routerLink]="'/farkle'"> Farkle </a>
-      <a mat-button [routerLink]="'/table'"> Table </a>
     </div>
   </mat-toolbar-row>
 </mat-toolbar>
 <mat-sidenav-container>
   <mat-sidenav #sidenav>
     <mat-nav-list>
-      <a mat-list-item [routerLink]="'/'"> Home </a>
-      <a mat-list-item [routerLink]="'/pig'"> Pig Dice </a>
-      <a mat-list-item [routerLink]="'/yahtzee'"> Yahtzee </a>
-      <a mat-list-item [routerLink]="'/farkle'"> Farkle </a>
+      <a mat-list-item [routerLink]="'/'" (click)="sidenav.toggle()"> Home </a>
+      <a mat-list-item [routerLink]="'/pig'" (click)="sidenav.toggle()">
+        Pig Dice
+      </a>
+      <a mat-list-item [routerLink]="'/yahtzee'" (click)="sidenav.toggle()">
+        Yahtzee
+      </a>
+      <a mat-list-item [routerLink]="'/farkle'" (click)="sidenav.toggle()">
+        Farkle
+      </a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
