@@ -111,34 +111,34 @@ export class YahtzeeComponent {
   currentYahtzeeBtn: boolean = false;
   currentChanceBtn: boolean = false;
 
-  disabledBtnArray = [
-    'p1AcesBtnDisabled',
-    'p1TwosBtnDisabled',
-    'p1ThreesBtnDisabled',
-    'p1FoursBtnDisabled',
-    'p1FivesBtnDisabled',
-    'p1SixesBtnDisabled',
-    'p1ThreeKindBtnDisabled',
-    'p1FourKindBtnDisabled',
-    'p1FullHouseBtnDisabled',
-    'p1SmStraightBtnDisabled',
-    'p1LgStraightBtnDisabled',
-    'p1YahtzeeBtnDisabled',
-    'p1ChanceBtnDisabled',
-    'p2AcesBtnDisabled',
-    'p2TwosBtnDisabled',
-    'p2ThreesBtnDisabled',
-    'p2FoursBtnDisabled',
-    'p2FivesBtnDisabled',
-    'p2SixesBtnDisabled',
-    'p2ThreeKindBtnDisabled',
-    'p2FourKindBtnDisabled',
-    'p2FullHouseBtnDisabled',
-    'p2SmStraightBtnDisabled',
-    'p2LgStraightBtnDisabled',
-    'p2YahtzeeBtnDisabled',
-    'p2ChanceBtnDisabled',
-  ];
+  // disabledBtnArray = [
+  //   'p1AcesBtnDisabled',
+  //   'p1TwosBtnDisabled',
+  //   'p1ThreesBtnDisabled',
+  //   'p1FoursBtnDisabled',
+  //   'p1FivesBtnDisabled',
+  //   'p1SixesBtnDisabled',
+  //   'p1ThreeKindBtnDisabled',
+  //   'p1FourKindBtnDisabled',
+  //   'p1FullHouseBtnDisabled',
+  //   'p1SmStraightBtnDisabled',
+  //   'p1LgStraightBtnDisabled',
+  //   'p1YahtzeeBtnDisabled',
+  //   'p1ChanceBtnDisabled',
+  //   'p2AcesBtnDisabled',
+  //   'p2TwosBtnDisabled',
+  //   'p2ThreesBtnDisabled',
+  //   'p2FoursBtnDisabled',
+  //   'p2FivesBtnDisabled',
+  //   'p2SixesBtnDisabled',
+  //   'p2ThreeKindBtnDisabled',
+  //   'p2FourKindBtnDisabled',
+  //   'p2FullHouseBtnDisabled',
+  //   'p2SmStraightBtnDisabled',
+  //   'p2LgStraightBtnDisabled',
+  //   'p2YahtzeeBtnDisabled',
+  //   'p2ChanceBtnDisabled',
+  // ];
 
   constructor(private snackBar: MatSnackBar) {}
 
@@ -308,6 +308,7 @@ export class YahtzeeComponent {
         console.log(this.p2_Sixes);
       }
     }
+    this.checkForWinner();
     this.totalUpperScores();
     this.resetDice();
     this.disableAddBtn(diceNum, this.activePlayer);
@@ -340,9 +341,8 @@ export class YahtzeeComponent {
       this.p2_ThreeOfaKind = threeKindtempSum;
       this.scoringArray = [];
     }
-    this.resetDice();
     this.disableAddBtn(val, this.activePlayer);
-    this.togglePlayer();
+    this.handleLowerScores();
   }
 
   scoreFourOfaKind(val: number) {
@@ -368,9 +368,8 @@ export class YahtzeeComponent {
       this.p2_FourOfaKind = fourKindtempSum;
       this.scoringArray = [];
     }
-    this.resetDice();
     this.disableAddBtn(val, this.activePlayer);
-    this.togglePlayer();
+    this.handleLowerScores();
   }
 
   scoreFullHouse(val: number) {
@@ -395,10 +394,8 @@ export class YahtzeeComponent {
       this.p2_FullHouse = fullHouseTempSum;
       this.scoringArray = [];
     }
-
-    this.resetDice();
     this.disableAddBtn(val, this.activePlayer);
-    this.togglePlayer();
+    this.handleLowerScores();
   }
 
   scoreSmStraight(val: number) {
@@ -425,9 +422,8 @@ export class YahtzeeComponent {
         this.p2_SmStraightBtnDisabled = true;
       }
     }
-    this.resetDice();
     this.disableAddBtn(val, this.activePlayer);
-    this.togglePlayer();
+    this.handleLowerScores();
   }
 
   scoreLgStraight(val: number) {
@@ -452,9 +448,8 @@ export class YahtzeeComponent {
         this.p2_LgStraightBtnDisabled = true;
       }
     }
-    this.resetDice();
     this.disableAddBtn(val, this.activePlayer);
-    this.togglePlayer();
+    this.handleLowerScores();
   }
 
   scoreYahtzee(val: number) {
@@ -477,9 +472,8 @@ export class YahtzeeComponent {
     } else {
       this.p2_Yahtzee = yahtzeeTempSum;
     }
-    this.resetDice();
     this.disableAddBtn(val, this.activePlayer);
-    this.togglePlayer();
+    this.handleLowerScores();
   }
 
   scoreChance(val: number) {
@@ -494,9 +488,15 @@ export class YahtzeeComponent {
     } else {
       this.p2_Chance = chanceTempSum;
     }
-    this.resetDice();
     this.disableAddBtn(val, this.activePlayer);
+    this.handleLowerScores();
+  }
+
+  handleLowerScores() {
+    this.totalLowerScores();
+    this.resetDice();
     this.togglePlayer();
+    this.checkForWinner();
   }
 
   getOccurrence(arr: number[], value: number) {
@@ -690,7 +690,7 @@ export class YahtzeeComponent {
       this.p1_UpperBonus = 35;
     }
 
-    if (this.p2_UpperTotal >= 63) {
+    if (this.p2_UpperSubtotal >= 63) {
       this.p2_UpperBonus = 35;
     }
 
@@ -853,6 +853,7 @@ export class YahtzeeComponent {
 
   newGame() {
     console.log('New Game');
+    this.resetDice();
     this.resetPlayer1();
     this.resetPlayer2();
   }
